@@ -1,0 +1,196 @@
+* {
+	border:  0px solid red;
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	width: 100%;
+}
+
+.img-logo{
+	height: 95px;
+	width: 95px;
+}
+
+.link-logo {
+	padding: 15%;
+}
+
+.divnav {
+	padding-top: 8px;
+	float: left;
+	width: 100%;
+}
+
+.center {	
+	display: inline-block;
+	margin:  auto;
+	text-align: center;
+}
+
+.divnav li {
+	width: 150px;
+	text-align: center;	
+	border-bottom: 3px solid transparent;
+} 
+
+.divdata {
+	margin-left: 40%;
+}
+
+.center-img {	
+	padding-top: 80px;
+	text-align: center;
+	background: linear-gradient(to top, black 0%, black 50%, white 50%, white 100% );
+}
+
+.center-img img {
+	border: 3px solid black;
+}
+
+.ropa-inicio a {
+	display: block;
+	text-decoration: none;
+	color: black;
+	width: 40%;
+	padding: 5px;
+	margin: auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	background: white;
+}
+
+li:hover {
+	color: black;	
+	border-bottom: 3px solid black;
+	font-weight: bold;
+}
+
+.ropa-inicio{
+	width: 100%;
+}
+
+.clear {
+	clear: both;
+}
+
+.divopc {
+	float: right;
+}
+
+.centerdiv ul{
+	width: 30%;
+	margin: auto;
+	font-size: 19px;
+}
+
+.center li {
+	margin: auto;
+}
+
+.nav2 {
+	font-size: 14px;
+	text-align: center;
+}
+
+.nav2 ul {
+	width: 80%;
+}
+
+.divform {
+	padding: 20px;
+	border: 1px solid black;
+	margin-left: 200px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.titulo-form {
+	text-align: center;
+}
+
+.row {
+	width: 100%;
+}
+
+.btncontra img, .repbtncontra img {
+	width: 25px;
+	height: 25px;
+	
+}
+
+.btncontra, .repbtncontra {
+	padding: 5px;
+	background: none;
+}
+
+.img-registro {
+	margin-left: 30px;
+	margin-top: 50px;
+	width: 85%;
+	height: 90%;
+	border: 3px solid black;
+}	
+
+.divbtnenviar {
+	text-align: center;
+}
+
+.btnenviar {
+	color: white;
+	background: black;
+	padding: 8px;
+	width: 200px;
+	font-size: 18px;
+}
+
+.btnenviar:hover {
+	font-weight: bold;
+}
+
+.alerta {
+	color: red;
+	font-size: 12px;
+	font-style: italic;
+}
+
+.link-categoria{
+	text-decoration: none;
+	color: black;
+
+}
+
+.link-categoria:hover {
+	color: black;
+	font-weight: bold;
+}
+
+.categorias {
+	margin-top: 20px;
+	margin-left: 50px;
+}
+
+.banner-hombre {
+	width: 920px;
+	height: 240px;
+	display: block;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.img-producto {
+	width: 300px;
+	height: 400px;
+}
+
+.div-producto-medio{
+	margin: 100px;
+	margin-top: 100px;
+}
+
+.productos {
+	text-align: center;
+}
