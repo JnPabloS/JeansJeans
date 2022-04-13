@@ -25,7 +25,12 @@
 
 </head>
 <body>
-
+	<?php
+		session_start();
+		if(isset($_SESSION['auth'])){
+			header("Location: index.php");
+		}
+	?>
 	<!--Nav-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid row divnav">
@@ -66,8 +71,8 @@
 				<div class="dropdown show col-2 divdata ">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
   					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    				<a class="dropdown-item" href="#">Iniciar sesión</a>
-    				<a class="dropdown-item" href="#">Registrarse</a>
+    				<a class="dropdown-item" href="?tp=2">Iniciar sesión</a>
+    				<a class="dropdown-item" href="?tp=1">Registrarse</a>
   					</div>
 				</div>
 
@@ -83,45 +88,77 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="divform">
-				<h5 class="titulo-form">Sus datos personales</h2>	
-				<form method="POST" name="registro" id="formulario" action="crud/create.php">
-					<label>Nombre<sup> *</sup></label>
-					<input type="text" id="nombre" class="form-control" name="nombre" required>
-					<p id="alertaNombre" class="alerta"></p>
-					<label>Apellido<sup> *</sup></label>
-					<input type="text" id="apellido" class="form-control" name="apellido" required>
-					<p id="alertaApellido" class="alerta"></p>
-					<label>Email<sup> *</sup></label>
-					<input type="email" id="email" class="form-control" name="email" required>
-					<p id="space" class="alerta"></p>
-					<div class="row">
-						<div class="col-md-10">
-							<label>Contraseña<sup> *</sup></label>
-							<input type="password" id="password" class="form-control inputcontra" name="password" required>
-							<p id="alertaContra" class="alerta"></p>
-						</div>
-						<div class="col-md-2 ">
-							<br>
-							<button class="btncontra" type="button"><img id="imgContra" src="img/no-ver.png"></button>
-						</div>
-					</div>
+				<h5 class="titulo-form">Ingrese sus datos</h2>	
+				<?php
+					if (isset($_GET['tp']) && $_GET['tp']==1) {
+						print('
+							<form method="POST" name="registro" id="formulario" action="crud/create.php">
+								<label>Nombre<sup> *</sup></label>
+								<input type="text" id="nombre" class="form-control" name="nombre" required>
+								<p id="alertaNombre" class="alerta"></p>
+								<label>Apellido<sup> *</sup></label>
+								<input type="text" id="apellido" class="form-control" name="apellido" required>
+								<p id="alertaApellido" class="alerta"></p>
+								<label>Email<sup> *</sup></label>
+								<input type="email" id="email" class="form-control" name="email" required>
+								<p id="space" class="alerta"></p>
+								<div class="row">
+									<div class="col-md-10">
+										<label>Contraseña<sup> *</sup></label>
+										<input type="password" id="password" class="form-control inputcontra" name="password" required>
+										<p id="alertaContra" class="alerta"></p>
+									</div>
+									<div class="col-md-2 ">
+										<br>
+										<button class="btncontra" type="button"><img id="imgContra" src="img/no-ver.png"></button>
+									</div>
+								</div>
 
-					<div class="row">
-						<div class="col-md-10">
-							<label>Repetir contraseña<sup> *</sup></label>
-							<input type="password" id="reppassword" class="form-control inputcontra" name="reppassword" required>
-							<p id="alertaRepContra" class="alerta"></p>
-						</div>
-						<div class="col-md-2 ">
-							<br>
-							<button class="repbtncontra" type="button"><img id="repImgContra" src="img/no-ver.png"></button>
-						</div>
-					</div>
-					<br><br>
-					<div class="divbtnenviar">	
-						<input type="submit" name="enviar" class="btnenviar" value="Registrarse">
-					</div>
-				</form>
+								<div class="row">
+									<div class="col-md-10">
+										<label>Repetir contraseña<sup> *</sup></label>
+										<input type="password" id="reppassword" class="form-control inputcontra" name="reppassword" required>
+										<p id="alertaRepContra" class="alerta"></p>
+									</div>
+									<div class="col-md-2 ">
+										<br>
+										<button class="repbtncontra" type="button"><img id="repImgContra" src="img/no-ver.png"></button>
+									</div>
+								</div>
+								<br><br>
+								<div class="divbtnenviar">	
+									<input type="submit" name="enviar" class="btnenviar" value="Registrarse">
+								</div>
+							</form>');
+					} else {
+						if (isset($_GET['error']) && $_GET['error']==1) {
+							$mensaje='Credenciales incorrectas';
+						} else {
+							$mensaje=' ';
+						}
+						print('
+							<form method="POST" name="login" id="formulario" action="login.php">
+								<label>Email<sup> *</sup></label>
+								<input type="email" id="email" class="form-control" name="email" required>
+								<p id="space" class="alerta"></p>
+								<div class="row">
+									<div class="col-md-10">
+										<label>Contraseña<sup> *</sup></label>
+										<input type="password" id="password" class="form-control inputcontra" name="password" required>
+										<p id="alertaContra" class="alerta"></p>
+									</div>
+									<div class="col-md-2 ">
+										<br>
+										<button class="btncontra" type="button"><img id="imgContra" src="img/no-ver.png"></button>
+									</div>
+								</div>
+								<p class="alerta">'.$mensaje.'</p>
+								<div class="divbtnenviar">	
+									<input type="submit" name="enviar" class="btnenviar" value="Iniciar sesión">
+								</div>
+							</form>');
+					}
+				?>
 			</div>
 		</div>
 		<div class="col-md-6">

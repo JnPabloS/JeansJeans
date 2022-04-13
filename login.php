@@ -2,17 +2,17 @@
 require_once "./controlador.php";
 
 $db = db::getDBConnection();
-$Respuesta = $db->getUser($_POST['user'],$_POST['pass']);
+$Respuesta = $db->getUser($_POST['email'],$_POST['password']);
+$usuario = mysqli_fetch_array($Respuesta);
 
 if (mysqli_num_rows($Respuesta)>0){
-	print("ok<br>");
 	session_start();
-	$_SESSION['user'] = $_POST['user'];
+	$_SESSION['user'] = $usuario['nombre'];
+	$_SESSION['apellido'] = $usuario['apellido'];
 	$_SESSION['auth'] = true;
-	header("Location: inicio.php");
+	header("Location: index.php");
 }else{
-	print("Error<br>");
-	header("Location: index.php?error=1");
+	header("Location: registrarse.php?error=1");
 }
 $db->close();
 

@@ -7,6 +7,8 @@
 	}
 	print("<p>".$_POST['nombre'].$_POST['apellido'].$_POST['email'].$_POST['password']."</p>");
 	print("alert(".$_POST['nombre'].$_POST['apellido'].$_POST['email'].$_POST['password'].")");
+	$_SESSION['user'] = $_POST['user'];
+	$_SESSION['auth'] = true;
 	$db = db::getDBConnection();
 	$Respuesta = $db->createUser($_POST['nombre'],$_POST['apellido'],$_POST['email'],$_POST['password'],"0");
 	if(!$Respuesta){

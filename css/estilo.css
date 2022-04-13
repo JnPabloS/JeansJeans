@@ -68,6 +68,22 @@ li:hover {
 	font-weight: bold;
 }
 
+.activo {
+	font-weight: bold;
+	border-bottom: 2px solid black;
+}
+
+.limpiar_filtro{
+	text-decoration: none;
+	background: lightgray;
+	text-align: center;
+	color: black;
+	display: block;
+	height: 27px;
+	width: 150px;
+	margin: 2px;
+}
+
 .ropa-inicio{
 	width: 100%;
 }

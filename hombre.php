@@ -42,20 +42,20 @@
 								<a class="nav-link" aria-current="page" href="#">MUJER</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">HOMBRE</a>
+								<a class="nav-link activo" href="hombre.php">HOMBRE</a>
 							</li>
 						</ul>
 					</div>
 					<div class="col-md-12 nav2">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">NUEVO</a>
+								<a class="nav-link" aria-current="page" href="?cat=new">NUEVO</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">LO MÁS VENDIDO</a>
+								<a class="nav-link" href="?cat=m_sell">LO MÁS VENDIDO</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#">REBAJAS</a>
+								<a class="nav-link" href="?cat=ofert">REBAJAS</a>
 							</li>
 						</ul>
 					</div>
@@ -65,8 +65,16 @@
 				<div class="dropdown show col-2 divdata ">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
   					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    				<a class="dropdown-item" href="#">Iniciar sesión</a>
-    				<a class="dropdown-item" href="registrarse.php">Registrarse</a>
+  					<?php
+  						session_start();
+  						if(!isset($_SESSION['auth'])){
+  							print('<a class="dropdown-item" href="registrarse.php?tp=2">Iniciar sesión</a>
+  								<a class="dropdown-item" href="registrarse.php?tp=1">Registrarse</a>');
+  						}
+  						else{
+  							print('<label class="dropdown-item">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido'].'</label><a class="dropdown-item" href="logout.php">Cerrar sesión</a>');
+  						}
+  					?>
   					</div>
 				</div>
 
@@ -86,38 +94,78 @@
 			<section class="categorias">
 				<h3 class="titulo-hombre">Hombre</h3>
 				<p>
-            		<a href="#!" class="link-categoria">Jeans</a>
+            		<a href="?cat=jean" class="link-categoria">Jeans</a>
           		</p>
 				<p>
-            		<a href="#!" class="link-categoria">Camisetas</a>
+            		<a href="?cat=camisa" class="link-categoria">Camisetas</a>
           		</p>
 				<p>
-            		<a href="#!" class="link-categoria">Pantalones</a>
+            		<a href="?cat=pantalon" class="link-categoria">Pantalones</a>
           		</p>
 				<p>
-            		<a href="#!" class="link-categoria">Accesorios</a>
+            		<a href="?cat=accesorio" class="link-categoria">Accesorios</a>
           		</p>
 			</section>
 		</div>
-		
 		<div class="col-md-10">
 			<div class="divbtnenviar">
 				<img class="banner-hombre" src="img/banner-hombre.jpg">				
 			</div>
 
+			<?php
+				$db = db::getDBConnection();
+				if(isset($_GET['cat'])){
+					
+					print('<a href="hombre.php" class="limpiar_filtro"><img src="img/filter.png">Limpiar filtro</a><div class="row productos">');
 
-			<div class="row productos">
-				<?php
-					$db = db::getDBConnection();
-					$Respuesta = $db->getProductos();
-					while ($Prenda = $Respuesta->fetch_assoc()) {
-						print("<div class='col-md-4 div-producto-inicio'>");	
-							print("<img class='img-producto' src='".$Prenda['imagen']."'>");
-							print("<p>".$Prenda['descripcion']."</p>");
-							print("<p>".$Prenda['precio']."</p>");
-						print("</div>");
+					switch ($_GET['cat']) {
+						case 'new':
+							$consulta = "SELECT * FROM ropa_hombre ORDER BY fecha DESC";
+							break;
+						
+						case 'm_sell':
+							$consulta = "SELECT * FROM ropa_hombre ORDER BY ventas DESC";
+							break;
+
+						case 'ofert':
+							$consulta = "SELECT * FROM ropa_hombre WHERE oferta!=0";
+							break;
+
+						case 'jean':
+							$consulta = "SELECT * FROM ropa_hombre WHERE categoria='jean'";
+							break;
+
+						case 'camisa':
+							$consulta = "SELECT * FROM ropa_hombre WHERE categoria='camisa'";
+							break;
+
+						case 'pantalon':
+							$consulta = "SELECT * FROM ropa_hombre WHERE categoria='pantalon'";
+							break;
+
+						case 'accesorio':
+							$consulta = "SELECT * FROM ropa_hombre WHERE categoria='accesorio'";
+							break;
+
+						default:
+							$consulta = "SELECT * FROM ropa_hombre LIMIT 20";
+							break;
+
 					}
-				?>
+				} else {
+					$consulta = "SELECT * FROM ropa_hombre LIMIT 20";
+					print('
+			<div class="row productos">');
+				}
+				$Respuesta = $db->getProductos($consulta);
+				while ($Prenda = $Respuesta->fetch_assoc()) {
+					print("<div class='col-md-4 div-producto-inicio'>");	
+						print("<img class='img-producto' src='".$Prenda['imagen']."'>");
+						print("<p>".$Prenda['descripcion']."</p>");
+						print("<p>".$Prenda['precio']."</p>");
+					print("</div>");
+				}
+			?>
 				<!--<div class="col-md-3 div-producto-inicio">
 					<img class="img-producto" src="img/ropa1.png">
 					<br>	

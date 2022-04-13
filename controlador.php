@@ -38,13 +38,12 @@ class DB extends mysqli{
 		return $this->query($consulta);
 	}
 
-	function getUser($nombre,$contra){
-		$consulta = "SELECT * FROM usuarios WHERE nombre='".$nombre."' AND password='".$contra."'";
+	function getUser($email,$contra){
+		$consulta = "SELECT * FROM usuarios WHERE email='".$email."' AND contra='".$contra."'";
 		return $this->query($consulta);
 	}
 
-	function getProductos(){
-		$consulta = "SELECT * FROM ropa_hombre LIMIT 20";
+	function getProductos($consulta){
 		return $this->query($consulta);
 	}
 }

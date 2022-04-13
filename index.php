@@ -78,8 +78,16 @@
 				<div class="dropdown show col-2 divdata ">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
   					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    				<a class="dropdown-item" href="#">Iniciar sesión</a>
-    				<a class="dropdown-item" href="registrarse.php">Registrarse</a>
+  					<?php
+  						session_start();
+  						if(!isset($_SESSION['auth'])){
+  							print('<a class="dropdown-item" href="registrarse.php?tp=2">Iniciar sesión</a>
+  								<a class="dropdown-item" href="registrarse.php?tp=1">Registrarse</a>');
+  						}
+  						else{
+  							print('<label class="dropdown-item">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido'].'</label><a class="dropdown-item" href="logout.php">Cerrar sesión</a>');
+  						}
+  					?>
   					</div>
 				</div>
 
