@@ -52,7 +52,7 @@
 					<div class="col-md-12 centerdiv">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">MUJER</a>
+								<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="hombre.php">HOMBRE</a>

@@ -39,7 +39,7 @@
 					<div class="col-md-12 centerdiv">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">MUJER</a>
+								<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link activo" href="hombre.php">HOMBRE</a>
@@ -90,7 +90,7 @@
 	?>
 	<div class="row">
 		<div class="col-md-1 categorias">
-				<h3 class="titulo-hombre">Hombre</h3>
+				<h3 class="titulo-categoria">Hombre</h3>
 				<p><a href="?cat=jean" class="link-categoria">Jeans</a></p>
 				<p><a href="?cat=camisa" class="link-categoria">Camisetas</a></p>
 				<p><a href="?cat=pantalon" class="link-categoria">Pantalones</a></p>

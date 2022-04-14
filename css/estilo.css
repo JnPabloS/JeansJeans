@@ -248,11 +248,11 @@ li:hover {
 	font-weight: bold;
 }
 
-.titulo-hombre {
+.titulo-categoria {
 	margin-top: 20px;
 }
 
-.titulo-hombre::first-letter {
+.titulo-categoria::first-letter {
 	font-size: 35px;
 }
 
