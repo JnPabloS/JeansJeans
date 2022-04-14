@@ -89,22 +89,12 @@
 	require_once "./controlador.php";
 	?>
 	<div class="row">
-		<div class="col-md-2">
-			<section class="categorias">
+		<div class="col-md-1 categorias">
 				<h3 class="titulo-hombre">Hombre</h3>
-				<p>
-            		<a href="?cat=jean" class="link-categoria">Jeans</a>
-          		</p>
-				<p>
-            		<a href="?cat=camisa" class="link-categoria">Camisetas</a>
-          		</p>
-				<p>
-            		<a href="?cat=pantalon" class="link-categoria">Pantalones</a>
-          		</p>
-				<p>
-            		<a href="?cat=accesorio" class="link-categoria">Accesorios</a>
-          		</p>
-			</section>
+				<p><a href="?cat=jean" class="link-categoria">Jeans</a></p>
+				<p><a href="?cat=camisa" class="link-categoria">Camisetas</a></p>
+				<p><a href="?cat=pantalon" class="link-categoria">Pantalones</a></p>
+				<p><a href="?cat=accesorio" class="link-categoria">Accesorios</a></p>
 		</div>
 		<div class="col-md-10">
 			<div class="divbtnenviar">
@@ -115,7 +105,12 @@
 				$db = db::getDBConnection();
 				if(isset($_GET['cat'])){
 					
-					print('<a href="hombre.php" class="limpiar_filtro"><img src="img/filter.png">Limpiar filtro</a><div class="row productos">');
+					print('
+						<div class="div-limpiar">
+						<a href="hombre.php" class="limpiar_filtro">
+							<img class="img-filter" src="img/filter.png">Limpiar filtro
+						</a></div>
+						<div class="row productos">');
 
 					switch ($_GET['cat']) {
 						case 'new':
@@ -155,9 +150,9 @@
 				$Respuesta = $db->getProductos($consulta);
 				while ($Prenda = $Respuesta->fetch_assoc()) {
 					$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
-					print("<div class='col-md-4 div-producto-inicio'><a href='producto.php?s=M&ref=".$Prenda['id']."'>");	
+					print("<div class='col-md-4'><div class='div-producto-inicio'><a href='producto.php?s=M&ref=".$Prenda['id']."'>");	
 						print("<img class='img-producto' src='".$Prenda['imagen']."'>");
-						print("<p>".$Prenda['nombre']."</p>");
+						print("<p>".$Prenda['nombre']."</p>");	
 
 						if ($Prenda['oferta']!=0) {
 							print('
@@ -172,33 +167,9 @@
 								<p class="negrilla">$'.$Prenda['precio'].'</p>
 							');
 						}
-					print("</a></div>");
+					print("</a></div></div>");
 				}
 			?>
-				<!--<div class="col-md-3 div-producto-inicio">
-					<img class="img-producto" src="img/ropa1.png">
-					<br>	
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-					<p>$59.000</p>
-				</div>
-
-				<div class="col-md-3 div-producto-medio">
-					<img class="img-producto" src="img/ropa1.png">
-					<br>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-					<p>$59.000</p>
-				</div>
-
-				<div class="col-md-3 div-producto-final">
-					<img class="img-producto" src="img/ropa1.png">
-					<br>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-					<p>$59.000</p>
-				</div>-->
-
 
 		</div>
 	</div>

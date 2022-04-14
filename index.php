@@ -47,7 +47,6 @@
 				<span class="navbar-toggler-icon"></span>
 				</button>
 				<!--<a class="navbar-brand" href="#">JeansJeans</a>-->
-				
 			</div>
 			<div class="collapse navbar-collapse col-md-6 row" id="navbarTogglerDemo03">
 					<div class="col-md-12 centerdiv">
@@ -128,32 +127,6 @@
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <!-- Right -->
-    <div>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
 
   <!-- Section: Links  -->
   <section class="">
