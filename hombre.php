@@ -87,8 +87,7 @@
 	<!--Nav-->
 	<?php
 	require_once "./controlador.php";
-
-?>
+	?>
 	<div class="row">
 		<div class="col-md-2">
 			<section class="categorias">
@@ -158,13 +157,14 @@
 					$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
 					print("<div class='col-md-4 div-producto-inicio'><a href='producto.php?s=M&ref=".$Prenda['id']."'>");	
 						print("<img class='img-producto' src='".$Prenda['imagen']."'>");
-						print("<p>".$Prenda['descripcion']."</p>");
+						print("<p>".$Prenda['nombre']."</p>");
 
 						if ($Prenda['oferta']!=0) {
 							print('
-
-								<p>$<strike>'.$Prenda['precio'].'</strike></p>
-								<p class="negrilla">$'.$desc.'</p>'
+								<div class="row">
+									<div class="col-md-6"><p>$<strike>'.$Prenda['precio'].'</strike></p></div>
+									<div class="col-md-6"><p class="negrilla">$'.$desc.'</p></div>
+								</div>'
 							);
 				
 						} else {

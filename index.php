@@ -59,19 +59,6 @@
 							</li>
 						</ul>
 					</div>
-					<div class="col-md-12 nav2">
-						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
-							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">NUEVO</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">LO MÁS VENDIDO</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">REBAJAS</a>
-							</li>
-						</ul>
-					</div>
 			</div>
 
 			<div class="col-md-3 row ">
