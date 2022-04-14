@@ -210,3 +210,32 @@ li:hover {
 .productos {
 	text-align: center;
 }
+
+.div-producto-inicio:hover {
+	border: 1px solid lightgray;
+	transform: scale(1.1);
+	background: white;
+	color: black;
+}
+
+.div-producto-inicio {
+	border: 1px solid white;
+	margin-top: 3px;
+}
+
+.div-producto-inicio a {
+	text-decoration: none;
+	color: black;
+}
+
+.div-producto-inicio a:hover {
+	color: black;
+}
+
+.let_roja {
+	color: red;
+}
+
+.negrilla {
+	font-weight: bold;
+}

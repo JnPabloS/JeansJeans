@@ -38,24 +38,40 @@
 			<div class="collapse navbar-collapse col-md-6 row" id="navbarTogglerDemo03">
 					<div class="col-md-12 centerdiv">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
-							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">MUJER</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link activo" href="hombre.php">HOMBRE</a>
-							</li>
+						<?php
+							if(isset($_GET['s'])){
+								if ($_GET['s']=='M') {
+									print('<li class="nav-item">
+										<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
+										</li>
+										<li class="nav-item">
+										<a class="nav-link activo" href="hombre.php">HOMBRE</a>
+										</li>'
+									);
+								}
+								else {
+									print('<li class="nav-item">
+									<a class="nav-link activo" aria-current="page" href="mujer.php">MUJER</a>
+									</li>
+									<li class="nav-item">
+									<a class="nav-link" href="hombre.php">HOMBRE</a>
+									</li>'
+									);
+								}								
+							}
+						?>
 						</ul>
 					</div>
 					<div class="col-md-12 nav2">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="?cat=new">NUEVO</a>
+								<a class="nav-link" aria-current="page" href="">NUEVO</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="?cat=m_sell">LO MÁS VENDIDO</a>
+								<a class="nav-link" href="">LO MÁS VENDIDO</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="?cat=ofert">REBAJAS</a>
+								<a class="nav-link" href="">REBAJAS</a>
 							</li>
 						</ul>
 					</div>
@@ -86,126 +102,45 @@
 	</nav>
 	<!--Nav-->
 	<?php
-	require_once "./controlador.php";
-
-?>
-	<div class="row">
-		<div class="col-md-2">
-			<section class="categorias">
-				<h3 class="titulo-hombre">Hombre</h3>
-				<p>
-            		<a href="?cat=jean" class="link-categoria">Jeans</a>
-          		</p>
-				<p>
-            		<a href="?cat=camisa" class="link-categoria">Camisetas</a>
-          		</p>
-				<p>
-            		<a href="?cat=pantalon" class="link-categoria">Pantalones</a>
-          		</p>
-				<p>
-            		<a href="?cat=accesorio" class="link-categoria">Accesorios</a>
-          		</p>
-			</section>
-		</div>
-		<div class="col-md-10">
-			<div class="divbtnenviar">
-				<img class="banner-hombre" src="img/banner-hombre.jpg">				
-			</div>
-
-			<?php
-				$db = db::getDBConnection();
-				if(isset($_GET['cat'])){
-					
-					print('<a href="hombre.php" class="limpiar_filtro"><img src="img/filter.png">Limpiar filtro</a><div class="row productos">');
-
-					switch ($_GET['cat']) {
-						case 'new':
-							$consulta = "SELECT * FROM ropa_hombre ORDER BY fecha DESC";
-							break;
-						
-						case 'm_sell':
-							$consulta = "SELECT * FROM ropa_hombre ORDER BY ventas DESC";
-							break;
-
-						case 'ofert':
-							$consulta = "SELECT * FROM ropa_hombre WHERE oferta!=0";
-							break;
-
-						case 'jean':
-							$consulta = "SELECT * FROM ropa_hombre WHERE categoria='jean'";
-							break;
-
-						case 'camisa':
-							$consulta = "SELECT * FROM ropa_hombre WHERE categoria='camisa'";
-							break;
-
-						case 'pantalon':
-							$consulta = "SELECT * FROM ropa_hombre WHERE categoria='pantalon'";
-							break;
-
-						case 'accesorio':
-							$consulta = "SELECT * FROM ropa_hombre WHERE categoria='accesorio'";
-							break;
-					}
-				} else {
-					$consulta = "SELECT * FROM ropa_hombre LIMIT 20";
-					print('
-						<div class="row productos">'
+		require_once "./controlador.php";
+		$db = db::getDBConnection();
+		if(isset($_GET['ref'])){
+			$consulta = "SELECT * FROM ropa_hombre WHERE id=".$_GET['ref'];
+			$Respuesta = $db->getProductos($consulta);
+			$Prenda = $Respuesta->fetch_assoc();
+			$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
+			print('
+				<div class="row">
+					<div class="col-md-8 center">
+						<img src="'.$Prenda['imagen'].'">
+					</div>
+					<div class="col-md-4">
+						<p>'.$Prenda['ventas'].' vendidos</p>
+						<div class="row">
+							<h2 class="col-md-8">'.$Prenda['nombre'].'</h2>
+							<div class="col-md-4">');
+			if ($Prenda['oferta']!=0) {
+				print('
+								<h4>$<strike>'.$Prenda['precio'].'</strike></h4>
+								<h2 class="let_roja">$'.$desc.'</h2>'
 					);
-				}
-				$Respuesta = $db->getProductos($consulta);
-				while ($Prenda = $Respuesta->fetch_assoc()) {
-					$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
-					print("<div class='col-md-4 div-producto-inicio'><a href='producto.php?s=M&ref=".$Prenda['id']."'>");	
-						print("<img class='img-producto' src='".$Prenda['imagen']."'>");
-						print("<p>".$Prenda['descripcion']."</p>");
-
-						if ($Prenda['oferta']!=0) {
-							print('
-
-								<p>$<strike>'.$Prenda['precio'].'</strike></p>
-								<p class="negrilla">$'.$desc.'</p>'
-							);
 				
-						} else {
-							print('
-								<p class="negrilla">$'.$Prenda['precio'].'</p>
-							');
-						}
-					print("</a></div>");
-				}
-			?>
-				<!--<div class="col-md-3 div-producto-inicio">
-					<img class="img-producto" src="img/ropa1.png">
-					<br>	
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-					<p>$59.000</p>
+			} else {
+				print('
+								<h2 class="let_roja">$'.$Prenda['precio'].'</h2>
+					');
+			}
+			print('
+							</div>
+						</div>
+						<p>'.$Prenda['descripcion'].'</p>
+						<p>REF: '.$Prenda['id'].'</p>
+						<a href="">Añadir al carrito</a>
+					</div>
 				</div>
-
-				<div class="col-md-3 div-producto-medio">
-					<img class="img-producto" src="img/ropa1.png">
-					<br>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-					<p>$59.000</p>
-				</div>
-
-				<div class="col-md-3 div-producto-final">
-					<img class="img-producto" src="img/ropa1.png">
-					<br>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-					<p>$59.000</p>
-				</div>-->
-
-
-		</div>
-	</div>
-</div>
-	
-
-
+				');
+		}
+	?>
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
   <!-- Section: Social media -->
