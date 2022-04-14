@@ -50,7 +50,7 @@ class carrito{
 
 		array_push($items, $item);
 
-		$this->setCarrito()
+		$this->setCarrito();
 	}
 }
 
