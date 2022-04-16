@@ -34,7 +34,6 @@
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 				</button>
-				<!--<a class="navbar-brand" href="#">JeansJeans</a>-->
 			</div>
 			<div class="collapse navbar-collapse col-md-6 row" id="navbarTogglerDemo03">
 					<div class="col-md-12 centerdiv">
@@ -42,7 +41,11 @@
 						<?php
 							if(isset($_GET['s'])){
 								if ($_GET['s']=='M') {
+
+									$next = "hombre.php";
+
 									$tabla = "ropa_hombre";
+
 									print('<li class="nav-item">
 										<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
 										</li>
@@ -52,7 +55,11 @@
 									);
 								}
 								else {
+
+									$next = "mujer.php";
+
 									$tabla = "ropa_mujer";
+
 									print('<li class="nav-item">
 									<a class="nav-link activo" aria-current="page" href="mujer.php">MUJER</a>
 									</li>
@@ -68,13 +75,13 @@
 					<div class="col-md-12 nav2">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="">NUEVO</a>
+								<a class="nav-link" aria-current="page" href=<?php print($next."?cat=new") ?>>NUEVO</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="">LO MÁS VENDIDO</a>
+								<a class="nav-link" href=<?php print($next."?cat=m_sell") ?>>LO MÁS VENDIDO</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="">REBAJAS</a>
+								<a class="nav-link" href=<?php print($next."?cat=ofert") ?>>REBAJAS</a>
 							</li>
 						</ul>
 					</div>
@@ -113,19 +120,28 @@
 	<?php
 		require_once "./controlador.php";
 		$db = db::getDBConnection();
+		
 		if(isset($_GET['ref'])){
+
 			$consulta = "SELECT * FROM ".$tabla." WHERE id=".$_GET['ref'];
 			$Respuesta = $db->getProductos($consulta);
 			$Prenda = $Respuesta->fetch_assoc();
 			$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
 			print('
 				<div class="row">
-					<input type="hidden" value='.$Prenda['id'].' />
+
+          <input type="hidden" value='.$Prenda['id'].' />
 					<input type="hidden" value='.$tabla.' />
-					<div class="col-md-8 center">
-						<img src="'.$Prenda['imagen'].'">
-					</div>
 					<div class="col-md-4">
+						<img class="img-prenda center" src="'.$Prenda['imagen'].'">
+					</div>
+          
+					<div class="col-md-4">
+						<img class="img-prenda center" src="'.$Prenda['imagen2'].'">
+					</div>
+          
+					<div class="col-md-4">
+					<div class="descripcion">
 						<p>'.$Prenda['ventas'].' vendidos</p>
 						<div class="row">
 							<h2 class="col-md-8">'.$Prenda['nombre'].'</h2>
@@ -144,10 +160,15 @@
 			print('
 							</div>
 						</div>
-						<p>'.$Prenda['descripcion'].'</p>
+						<p class="especificacion">'.$Prenda['descripcion'].'</p>
 						<p>REF: '.$Prenda['id'].'</p>
-						<a id="btn-add" href="">Añadir al carrito</a>
+            
+						<div class="anadir-center">
+							<a class="anadir-carrito" id="btn-add" href="">Añadir al carrito</a>
+						</div>
+
 					</div>
+				</div>
 				</div>
 				');
 		}
@@ -205,19 +226,10 @@
             CATEGORÍAS
           </h6>
           <p>
-            <a href="#!" class="text-reset">Mujer</a>
+            <a href="mujer.php" class="text-reset">Mujer</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Hombre</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Nuevo</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Lo más vendido</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Rebajas</a>
+            <a href="hombre.php" class="text-reset">Hombre</a>
           </p>
         </div>
         <!-- Grid column -->

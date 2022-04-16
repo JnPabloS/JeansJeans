@@ -5,8 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--CSS y JS-->
 	<link rel="stylesheet" href="css/estilo.css?n=1">
-	<script type="text/javascript" src="js/carrito.js"></script>
-
+	<!--<script type="text/javascript" src="js/codigo.js"></script>-->
 
 	<!--Boostrap-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -14,8 +13,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
 	<!--Logo-->
@@ -25,19 +24,6 @@
 
 </head>
 <body>
-	<?php
-		require_once "./controlador.php";
-
-		if(isset($_GET['error'])){
-			if($_GET['error']==1){
-				echo'<script type="text/javascript">
-    			alert("No fue posible crear la cuenta");
-    			window.location.href="index.php";
-    			</script>';
-			}
-		}
-
-	?>
 
 	<!--Nav-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -53,18 +39,30 @@
 					<div class="col-md-12 centerdiv">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
+								<a class="nav-link activo" aria-current="page" href="mujer.php">MUJER</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="hombre.php">HOMBRE</a>
 							</li>
 						</ul>
 					</div>
+					<div class="col-md-12 nav2">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="?cat=new">NUEVO</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="?cat=m_sell">LO MÁS VENDIDO</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="?cat=ofert">REBAJAS</a>
+							</li>
+						</ul>
+					</div>
 			</div>
 
 			<div class="col-md-3 row ">
-
-				<div class="dropdown show col-2 divdata">
+				<div class="dropdown show col-2 divdata ">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
   					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
   					<?php
@@ -80,61 +78,104 @@
   					</div>
 				</div>
 
-				<!--Carrito de compras-->
 				<div class="col-2">
-						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
-						<div id="carrito-container">
-							<div id="tabla">
-							</div>
-  					</div>
+						<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/carrito-compra.png"></a>
 				</div>
-
-
 			</div>
 		</div>
 	</nav>
 	<!--Nav-->
-	
-	<!--Carrusel-->
-	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-			</div>
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="img/banner4.png" class="d-block w-100" alt="100">
-				</div>
-				<div class="carousel-item">
-					<img src="img/banner3.png" class="d-block w-100" alt="100">
-				</div>
-			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">	
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
-	</div>
-	<!--Carrusel-->
-	
-	<!--Div - Ropa adicional-->
-	<div class="row ropa-inicio">
-		<div class="col-md-6 center-img center">
-			<div class="superponer">	
-				<img class="img-incio" src="img/mujerinicio.jpg">
-				<input type="file" name="imagen" <img class="img-editar" src="img/editar.png"/>
-			</div>
-				<a class="link-inicio" href="mujer.php">MUJER</a>
+	<?php
+	require_once "./controlador.php";
+	?>
+	<div class="row">
+		<div class="col-md-2 categorias">
+				<h3 class="titulo-categoria">Mujer</h3>
+				<p><a href="?cat=jean" class="link-categoria"><img class="img-categoria" src="img/jeans.png">Jeans</a></p>
+				<p><a href="?cat=camisa" class="link-categoria"><img class="img-categoria" src="img/camiseta.png">Camisetas</a></p>
+				<p><a href="?cat=pantalon" class="link-categoria"><img class="img-categoria" src="img/pantalon.png">Pantalones</a></p>
+				<p><a href="?cat=accesorio" class="link-categoria"><img class="img-categoria" src="img/reloj.png">Accesorios</a></p>
 		</div>
-		<div class="col-md-6 center-img">
-			<img src="img/hombreinicio.jpg">
-			<a  href="hombre.php">HOMBRE</a>
+		<div class="col-md-10">
+			<div class="divbtnenviar">
+				<img class="banner-hombre" src="img/banner-mujer.jpg">				
+			</div>
+
+			<?php
+				$db = db::getDBConnection();
+				if(isset($_GET['cat'])){
+					
+					print('
+						<div class="div-limpiar">
+						<a href="mujer.php" class="limpiar_filtro">
+							<img class="img-filter" src="img/filter.png">Limpiar filtro
+						</a></div>
+						<div class="row productos">');
+
+					switch ($_GET['cat']) {
+						case 'new':
+							$consulta = "SELECT * FROM ropa_mujer ORDER BY fecha DESC";
+							break;
+						
+						case 'm_sell':
+							$consulta = "SELECT * FROM ropa_mujer ORDER BY ventas DESC";
+							break;
+
+						case 'ofert':
+							$consulta = "SELECT * FROM ropa_mujer WHERE oferta!=0";
+							break;
+
+						case 'jean':
+							$consulta = "SELECT * FROM ropa_mujer WHERE categoria='jean'";
+							break;
+
+						case 'camisa':
+							$consulta = "SELECT * FROM ropa_mujer WHERE categoria='camisa'";
+							break;
+
+						case 'pantalon':
+							$consulta = "SELECT * FROM ropa_mujer WHERE categoria='pantalon'";
+							break;
+
+						case 'accesorio':
+							$consulta = "SELECT * FROM ropa_mujer WHERE categoria='accesorio'";
+							break;
+					}
+				} else {
+					$consulta = "SELECT * FROM ropa_mujer LIMIT 20";
+					print('
+						<div class="row productos">'
+					);
+				}
+				$Respuesta = $db->getProductos($consulta);
+				while ($Prenda = $Respuesta->fetch_assoc()) {
+					$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
+					print("<div class='col-md-4'><div class='div-producto-inicio'><a href='producto.php?s=F&ref=".$Prenda['id']."'>");	
+						print("<img class='img-producto' src='".$Prenda['imagen']."'>");
+						print("<p>".$Prenda['nombre']."</p>");	
+
+						if ($Prenda['oferta']!=0) {
+							print('
+								<div class="row">
+									<div class="col-md-6"><p>$<strike>'.$Prenda['precio'].'</strike></p></div>
+									<div class="col-md-6"><p class="negrilla">$'.$desc.'</p></div>
+								</div>'
+							);
+				
+						} else {
+							print('
+								<p class="negrilla">$'.$Prenda['precio'].'</p>
+							');
+						}
+					print("</a></div></div>");
+				}
+			?>
+
 		</div>
+		
 	</div>
-	<!--Div - Ropa adicional-->
+</div>
+	
 
 
 <!-- Footer -->
@@ -200,8 +241,5 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
-
-
-</body>
 
 </html>

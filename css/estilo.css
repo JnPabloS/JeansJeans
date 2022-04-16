@@ -33,7 +33,7 @@ body {
 .divnav li {
 	width: 150px;
 	text-align: center;	
-	border-bottom: 3px solid transparent;
+	border-bottom: 2px solid transparent;
 } 
 
 .divdata {
@@ -50,6 +50,7 @@ body {
 	border: 3px solid black;
 }
 
+
 .ropa-inicio a {
 	display: block;
 	text-decoration: none;
@@ -64,7 +65,7 @@ body {
 
 li:hover {
 	color: black;	
-	border-bottom: 3px solid black;
+	border-bottom: 2px solid black;
 	font-weight: bold;
 }
 
@@ -75,13 +76,20 @@ li:hover {
 
 .limpiar_filtro{
 	text-decoration: none;
-	background: lightgray;
+	background: rgb(248,249,250);
 	text-align: center;
 	color: black;
-	display: block;
-	height: 27px;
-	width: 150px;
-	margin: 2px;
+	padding: 0.8% 1.8%;
+	margin-bottom: 20px;
+	border: 1px solid lightgray;
+}
+
+.div-limpiar {
+	margin-bottom: 15px;
+}
+
+.img-filter {
+	margin-right: 5px;
 }
 
 .ropa-inicio{
@@ -175,24 +183,32 @@ li:hover {
 .link-categoria{
 	text-decoration: none;
 	color: black;
+	font-size: 17px;
+	padding-left: 45px;
 
 }
+
+.limpiar_filtro:hover {
+	background: white;
+	border: 1px solid black;
+	color: black;
+}
+
 
 .link-categoria:hover {
 	color: black;
 	font-weight: bold;
+	font-size: 18px;
 }
 
 .categorias {
 	margin-top: 20px;
-	margin-left: 50px;
+	width: 100%;
 }
 
 .banner-hombre {
-	width: 920px;
-	height: 240px;
+	width: 100%;
 	display: block;
-	margin: auto;
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
@@ -200,11 +216,6 @@ li:hover {
 .img-producto {
 	width: 300px;
 	height: 400px;
-}
-
-.div-producto-medio{
-	margin: 100px;
-	margin-top: 100px;
 }
 
 .productos {
@@ -220,7 +231,7 @@ li:hover {
 
 .div-producto-inicio {
 	border: 1px solid white;
-	margin-top: 3px;
+	margin: 7%;
 }
 
 .div-producto-inicio a {
@@ -240,6 +251,72 @@ li:hover {
 	font-weight: bold;
 }
 
+.titulo-categoria {
+	margin-top: 20px;
+	padding-left: 45px;
+}
+
+.titulo-categoria::first-letter {
+	font-size: 40px;
+}
+
+.img-prenda {
+	width: 100%;
+	margin: 10px;
+	margin-top: 20px;
+	border: 1px solid lightgray;
+}
+
+.img-prenda:hover {
+	border: 1px solid lightgray;
+	transform: scale(1.05);
+}
+
+.descripcion {
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+.especificacion {
+	color: gray;
+}
+
+.anadir-carrito {
+	text-decoration: none;
+	background: black;
+	padding: 2% 20%;
+	color: white;
+}
+
+.anadir-center {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.anadir-carrito:hover {
+	text-decoration: none;
+	background: white;
+	padding: 2% 20%;
+	color: black;
+	border: 1px solid black;
+}
+
+.img-categoria {
+	width: 15%;
+	margin-right: 8px;	
+}
+
+.img-editar {
+	 position:absolute;
+	 top:0px;
+	 left:0px;
+	 border:none;
+	 float: left;
+	 margin-top: 1080px;
+	 margin-left: 520px;
+	 width: 50px;
+}
+
 #carrito-container{
 	border: 1px solid lightgray;
     width: 400px;
@@ -256,3 +333,4 @@ li:hover {
 .carrito-item{
 	padding: 5px;
 }
+
