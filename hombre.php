@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--CSS y JS-->
 	<link rel="stylesheet" href="css/estilo.css?n=1">
-	<!--<script type="text/javascript" src="js/codigo.js"></script>-->
+	<script type="text/javascript" src="js/carrito.js"></script>
 
 	<!--Boostrap-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -18,7 +18,7 @@
 
 
 	<!--Logo-->
-	<link rel="icon" type="image/png" href="img/logojeans1.png">
+	<link rel="icon" type="image/png" href="img/logoj.png">
 	<title>JeansJeans</title>
 	<!--Logo-->
 
@@ -39,7 +39,7 @@
 					<div class="col-md-12 centerdiv">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">MUJER</a>
+								<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link activo" href="hombre.php">HOMBRE</a>
@@ -78,9 +78,15 @@
   					</div>
 				</div>
 
+				<!--Carrito de compras-->
 				<div class="col-2">
-						<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/carrito-compra.png"></a>
+						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
+						<div id="carrito-container">
+							<div id="tabla">
+							</div>
+  					</div>
 				</div>
+
 			</div>
 		</div>
 	</nav>
@@ -89,22 +95,12 @@
 	require_once "./controlador.php";
 	?>
 	<div class="row">
-		<div class="col-md-2">
-			<section class="categorias">
-				<h3 class="titulo-hombre">Hombre</h3>
-				<p>
-            		<a href="?cat=jean" class="link-categoria">Jeans</a>
-          		</p>
-				<p>
-            		<a href="?cat=camisa" class="link-categoria">Camisetas</a>
-          		</p>
-				<p>
-            		<a href="?cat=pantalon" class="link-categoria">Pantalones</a>
-          		</p>
-				<p>
-            		<a href="?cat=accesorio" class="link-categoria">Accesorios</a>
-          		</p>
-			</section>
+		<div class="col-md-2 categorias">
+				<h3 class="titulo-categoria">Hombre</h3>
+				<p><a href="?cat=jean" class="link-categoria"><img class="img-categoria" src="img/jeans.png">Jeans</a></p>
+				<p><a href="?cat=camisa" class="link-categoria"><img class="img-categoria" src="img/camiseta.png">Camisetas</a></p>
+				<p><a href="?cat=pantalon" class="link-categoria"><img class="img-categoria" src="img/pantalon.png">Pantalones</a></p>
+				<p><a href="?cat=accesorio" class="link-categoria"><img class="img-categoria" src="img/reloj.png">Accesorios</a></p>
 		</div>
 		<div class="col-md-10">
 			<div class="divbtnenviar">
@@ -115,7 +111,12 @@
 				$db = db::getDBConnection();
 				if(isset($_GET['cat'])){
 					
-					print('<a href="hombre.php" class="limpiar_filtro"><img src="img/filter.png">Limpiar filtro</a><div class="row productos">');
+					print('
+						<div class="div-limpiar">
+						<a href="hombre.php" class="limpiar_filtro">
+							<img class="img-filter" src="img/filter.png">Limpiar filtro
+						</a></div>
+						<div class="row productos">');
 
 					switch ($_GET['cat']) {
 						case 'new':
@@ -155,9 +156,9 @@
 				$Respuesta = $db->getProductos($consulta);
 				while ($Prenda = $Respuesta->fetch_assoc()) {
 					$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
-					print("<div class='col-md-4 div-producto-inicio'><a href='producto.php?s=M&ref=".$Prenda['id']."'>");	
+					print("<div class='col-md-4'><div class='div-producto-inicio'><a href='producto.php?s=M&ref=".$Prenda['id']."'>");	
 						print("<img class='img-producto' src='".$Prenda['imagen']."'>");
-						print("<p>".$Prenda['nombre']."</p>");
+						print("<p>".$Prenda['nombre']."</p>");	
 
 						if ($Prenda['oferta']!=0) {
 							print('
@@ -172,33 +173,9 @@
 								<p class="negrilla">$'.$Prenda['precio'].'</p>
 							');
 						}
-					print("</a></div>");
+					print("</a></div></div>");
 				}
 			?>
-				<!--<div class="col-md-3 div-producto-inicio">
-					<img class="img-producto" src="img/ropa1.png">
-					<br>	
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-					<p>$59.000</p>
-				</div>
-
-				<div class="col-md-3 div-producto-medio">
-					<img class="img-producto" src="img/ropa1.png">
-					<br>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-					<p>$59.000</p>
-				</div>
-
-				<div class="col-md-3 div-producto-final">
-					<img class="img-producto" src="img/ropa1.png">
-					<br>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p>
-					<p>$59.000</p>
-				</div>-->
-
 
 		</div>
 	</div>
@@ -208,32 +185,6 @@
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <!-- Right -->
-    <div>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
 
   <!-- Section: Links  -->
   <section class="">
@@ -259,19 +210,10 @@
             CATEGORÍAS
           </h6>
           <p>
-            <a href="#!" class="text-reset">Mujer</a>
+            <a href="mujer.php" class="text-reset">Mujer</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Hombre</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Nuevo</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Lo más vendido</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Rebajas</a>
+            <a  href="hombre.php" class="text-reset">Hombre</a>
           </p>
         </div>
         <!-- Grid column -->

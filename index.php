@@ -5,7 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--CSS y JS-->
 	<link rel="stylesheet" href="css/estilo.css?n=1">
-	<!--<script type="text/javascript" src="js/codigo.js"></script>-->
+	<script type="text/javascript" src="js/carrito.js"></script>
+
 
 	<!--Boostrap-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -18,7 +19,7 @@
 
 
 	<!--Logo-->
-	<link rel="icon" type="image/png" href="img/logojeans1.png">
+	<link rel="icon" type="image/png" href="img/logoj.png">
 	<title>JeansJeans</title>
 	<!--Logo-->
 
@@ -53,7 +54,7 @@
 					<div class="col-md-12 centerdiv">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">MUJER</a>
+								<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="hombre.php">HOMBRE</a>
@@ -63,7 +64,8 @@
 			</div>
 
 			<div class="col-md-3 row ">
-				<div class="dropdown show col-2 divdata ">
+
+				<div class="dropdown show col-2 divdata">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
   					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
   					<?php
@@ -79,9 +81,16 @@
   					</div>
 				</div>
 
+				<!--Carrito de compras-->
 				<div class="col-2">
-						<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/carrito-compra.png"></a>
+						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
+						<div id="carrito-container">
+							<div id="tabla">
+							</div>
+  					</div>
 				</div>
+
+
 			</div>
 		</div>
 	</nav>
@@ -115,8 +124,10 @@
 	<!--Div - Ropa adicional-->
 	<div class="row ropa-inicio">
 		<div class="col-md-6 center-img center">
-			<img src="img/mujerinicio.jpg">
-			<a href="#">MUJER</a>
+			<div class="superponer">	
+				<img class="img-incio" src="img/mujerinicio.jpg">
+			</div>
+				<a class="link-inicio" href="mujer.php">MUJER</a>
 		</div>
 		<div class="col-md-6 center-img">
 			<img src="img/hombreinicio.jpg">
@@ -128,32 +139,6 @@
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <!-- Right -->
-    <div>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
 
   <!-- Section: Links  -->
   <section class="">
@@ -179,19 +164,10 @@
             CATEGORÍAS
           </h6>
           <p>
-            <a href="#!" class="text-reset">Mujer</a>
+            <a href="mujer.php" class="text-reset">Mujer</a>
           </p>
           <p>
             <a  href="hombre.php" class="text-reset">Hombre</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Nuevo</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Lo más vendido</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Rebajas</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -224,5 +200,8 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
+
+
+</body>
 
 </html>

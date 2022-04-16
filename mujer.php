@@ -5,8 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--CSS y JS-->
 	<link rel="stylesheet" href="css/estilo.css?n=1">
-	<script type="text/javascript" src="js/carrito.js"></script>
-
+	<script type="text/javascript" src="js/carrito.js?n=1"></script>
 
 	<!--Boostrap-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -19,7 +18,7 @@
 
 
 	<!--Logo-->
-	<link rel="icon" type="image/png" href="img/logojeans1.png">
+	<link rel="icon" type="image/png" href="img/logoj.png">
 	<title>JeansJeans</title>
 	<!--Logo-->
 
@@ -34,54 +33,29 @@
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 				</button>
+				<!--<a class="navbar-brand" href="#">JeansJeans</a>-->
 			</div>
 			<div class="collapse navbar-collapse col-md-6 row" id="navbarTogglerDemo03">
 					<div class="col-md-12 centerdiv">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
-						<?php
-							if(isset($_GET['s'])){
-								if ($_GET['s']=='M') {
-
-									$next = "hombre.php";
-
-									$tabla = "ropa_hombre";
-
-									print('<li class="nav-item">
-										<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
-										</li>
-										<li class="nav-item">
-										<a class="nav-link activo" href="hombre.php">HOMBRE</a>
-										</li>'
-									);
-								}
-								else {
-
-									$next = "mujer.php";
-
-									$tabla = "ropa_mujer";
-
-									print('<li class="nav-item">
-									<a class="nav-link activo" aria-current="page" href="mujer.php">MUJER</a>
-									</li>
-									<li class="nav-item">
-									<a class="nav-link" href="hombre.php">HOMBRE</a>
-									</li>'
-									);
-								}								
-							}
-						?>
+							<li class="nav-item">
+								<a class="nav-link activo" aria-current="page" href="mujer.php">MUJER</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="hombre.php">HOMBRE</a>
+							</li>
 						</ul>
 					</div>
 					<div class="col-md-12 nav2">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href=<?php print($next."?cat=new") ?>>NUEVO</a>
+								<a class="nav-link" aria-current="page" href="?cat=new">NUEVO</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href=<?php print($next."?cat=m_sell") ?>>LO MÁS VENDIDO</a>
+								<a class="nav-link" href="?cat=m_sell">LO MÁS VENDIDO</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href=<?php print($next."?cat=ofert") ?>>REBAJAS</a>
+								<a class="nav-link" href="?cat=ofert">REBAJAS</a>
 							</li>
 						</ul>
 					</div>
@@ -106,7 +80,7 @@
 
 				<!--Carrito de compras-->
 				<div class="col-2">
-						<a href="" class="btn-carrito"><img src="img/carrito-compra.png"></a>
+						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
 						<div id="carrito-container">
 							<div id="tabla">
 							</div>
@@ -118,89 +92,100 @@
 	</nav>
 	<!--Nav-->
 	<?php
-		require_once "./controlador.php";
-		$db = db::getDBConnection();
-		
-		if(isset($_GET['ref'])){
-
-			$consulta = "SELECT * FROM ".$tabla." WHERE id=".$_GET['ref'];
-			$Respuesta = $db->getProductos($consulta);
-			$Prenda = $Respuesta->fetch_assoc();
-			$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
-			print('
-				<div class="row">
-
-          <input type="hidden" value='.$Prenda['id'].' />
-					<input type="hidden" value='.$tabla.' />
-					<div class="col-md-4">
-						<img class="img-prenda center" src="'.$Prenda['imagen'].'">
-					</div>
-          
-					<div class="col-md-4">
-						<img class="img-prenda center" src="'.$Prenda['imagen2'].'">
-					</div>
-          
-					<div class="col-md-4">
-					<div class="descripcion">
-						<p>'.$Prenda['ventas'].' vendidos</p>
-						<div class="row">
-							<h2 class="col-md-8">'.$Prenda['nombre'].'</h2>
-							<div class="col-md-4">');
-			if ($Prenda['oferta']!=0) {
-				print('
-								<h4>$<strike>'.$Prenda['precio'].'</strike></h4>
-								<h2 class="let_roja">$'.$desc.'</h2>'
-					);
-				
-			} else {
-				print('
-								<h2 class="let_roja">$'.$Prenda['precio'].'</h2>
-					');
-			}
-			print('
-							</div>
-						</div>
-						<p class="especificacion">'.$Prenda['descripcion'].'</p>
-						<p>REF: '.$Prenda['id'].'</p>
-            
-						<div class="anadir-center">
-							<a class="anadir-carrito" id="btn-add" href="">Añadir al carrito</a>
-						</div>
-
-					</div>
-				</div>
-				</div>
-				');
-		}
+	require_once "./controlador.php";
 	?>
+	<div class="row">
+		<div class="col-md-2 categorias">
+				<h3 class="titulo-categoria">Mujer</h3>
+				<p><a href="?cat=jean" class="link-categoria"><img class="img-categoria" src="img/jeans.png">Jeans</a></p>
+				<p><a href="?cat=camisa" class="link-categoria"><img class="img-categoria" src="img/camiseta.png">Camisetas</a></p>
+				<p><a href="?cat=pantalon" class="link-categoria"><img class="img-categoria" src="img/pantalon.png">Pantalones</a></p>
+				<p><a href="?cat=accesorio" class="link-categoria"><img class="img-categoria" src="img/reloj.png">Accesorios</a></p>
+		</div>
+		<div class="col-md-10">
+			<div class="divbtnenviar">
+				<img class="banner-hombre" src="img/banner-mujer.jpg">				
+			</div>
+
+			<?php
+				$db = db::getDBConnection();
+				if(isset($_GET['cat'])){
+					
+					print('
+						<div class="div-limpiar">
+						<a href="mujer.php" class="limpiar_filtro">
+							<img class="img-filter" src="img/filter.png">Limpiar filtro
+						</a></div>
+						<div class="row productos">');
+
+					switch ($_GET['cat']) {
+						case 'new':
+							$consulta = "SELECT * FROM ropa_mujer ORDER BY fecha DESC";
+							break;
+						
+						case 'm_sell':
+							$consulta = "SELECT * FROM ropa_mujer ORDER BY ventas DESC";
+							break;
+
+						case 'ofert':
+							$consulta = "SELECT * FROM ropa_mujer WHERE oferta!=0";
+							break;
+
+						case 'jean':
+							$consulta = "SELECT * FROM ropa_mujer WHERE categoria='jean'";
+							break;
+
+						case 'camisa':
+							$consulta = "SELECT * FROM ropa_mujer WHERE categoria='camisa'";
+							break;
+
+						case 'pantalon':
+							$consulta = "SELECT * FROM ropa_mujer WHERE categoria='pantalon'";
+							break;
+
+						case 'accesorio':
+							$consulta = "SELECT * FROM ropa_mujer WHERE categoria='accesorio'";
+							break;
+					}
+				} else {
+					$consulta = "SELECT * FROM ropa_mujer LIMIT 20";
+					print('
+						<div class="row productos">'
+					);
+				}
+				$Respuesta = $db->getProductos($consulta);
+				while ($Prenda = $Respuesta->fetch_assoc()) {
+					$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
+					print("<div class='col-md-4'><div class='div-producto-inicio'><a href='producto.php?s=F&ref=".$Prenda['id']."'>");	
+						print("<img class='img-producto' src='".$Prenda['imagen']."'>");
+						print("<p>".$Prenda['nombre']."</p>");	
+
+						if ($Prenda['oferta']!=0) {
+							print('
+								<div class="row">
+									<div class="col-md-6"><p>$<strike>'.$Prenda['precio'].'</strike></p></div>
+									<div class="col-md-6"><p class="negrilla">$'.$desc.'</p></div>
+								</div>'
+							);
+				
+						} else {
+							print('
+								<p class="negrilla">$'.$Prenda['precio'].'</p>
+							');
+						}
+					print("</a></div></div>");
+				}
+			?>
+
+		</div>
+		
+	</div>
+</div>
+	
+
+
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <!-- Right -->
-    <div>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
 
   <!-- Section: Links  -->
   <section class="">
@@ -229,7 +214,7 @@
             <a href="mujer.php" class="text-reset">Mujer</a>
           </p>
           <p>
-            <a href="hombre.php" class="text-reset">Hombre</a>
+            <a  href="hombre.php" class="text-reset">Hombre</a>
           </p>
         </div>
         <!-- Grid column -->
