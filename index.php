@@ -5,7 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--CSS y JS-->
 	<link rel="stylesheet" href="css/estilo.css?n=1">
-	<!--<script type="text/javascript" src="js/codigo.js"></script>-->
+	<script type="text/javascript" src="js/carrito.js"></script>
+
 
 	<!--Boostrap-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -63,7 +64,8 @@
 			</div>
 
 			<div class="col-md-3 row ">
-				<div class="dropdown show col-2 divdata ">
+
+				<div class="dropdown show col-2 divdata">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
   					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
   					<?php
@@ -79,9 +81,16 @@
   					</div>
 				</div>
 
+				<!--Carrito de compras-->
 				<div class="col-2">
-						<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/carrito-compra.png"></a>
+						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
+						<div id="carrito-container">
+							<div id="tabla">
+							</div>
+  					</div>
 				</div>
+
+
 			</div>
 		</div>
 	</nav>
@@ -224,5 +233,8 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
+
+
+</body>
 
 </html>

@@ -46,10 +46,6 @@ class DB extends mysqli{
 	function getProductos($consulta){
 		return $this->query($consulta);
 	}
-
-	function getCarrito(){
-		
-	}
 }
 
 	/*function deleteCard($cardName){
