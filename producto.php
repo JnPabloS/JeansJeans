@@ -106,7 +106,7 @@
 
 				<!--Carrito de compras-->
 				<div class="col-2">
-						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
+						<a href="" class="btn-carrito"><img src="img/carrito-compra.png"></a>
 						<div id="carrito-container">
 							<div id="tabla">
 							</div>

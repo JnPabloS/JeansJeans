@@ -125,7 +125,6 @@
 		<div class="col-md-6 center-img center">
 			<div class="superponer">	
 				<img class="img-incio" src="img/mujerinicio.jpg">
-				<input type="file" name="imagen" <img class="img-editar" src="img/editar.png"/>
 			</div>
 				<a class="link-inicio" href="mujer.php">MUJER</a>
 		</div>

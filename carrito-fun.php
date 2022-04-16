@@ -39,6 +39,7 @@ function mostrar($carrito)
 		$Respuesta = $db->getProductos($consulta);
 		$Prenda = $Respuesta->fetch_assoc();
 		$Prenda['cantidad'] = $itemCarrito['cantidad'];
+		$Prenda['tabla'] = $itemCarrito['tabla'];
 
 		switch ($Prenda['oferta']) {
 			case 0:
@@ -65,7 +66,7 @@ function mostrar($carrito)
 function agregar($carrito)
 {
 	if (isset($_GET['id'])) {
-		$res = $carrito->add($_GET['id']);
+		$res = $carrito->add($_GET['id'], $_GET['s']);
 		echo $res;
 	} else {
 		echo json_encode(['statuscode' => 404,
@@ -76,7 +77,7 @@ function agregar($carrito)
 function quitar($carrito)
 {
 	if (isset($_GET['id'])) {
-		$res = $carrito->remove($_GET['id']);
+		$res = $carrito->remove($_GET['id'], $_GET['s']);
 		echo $res;
 	}
 }
