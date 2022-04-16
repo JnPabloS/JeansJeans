@@ -18,7 +18,7 @@
 
 
 	<!--Logo-->
-	<link rel="icon" type="image/png" href="img/logojeans1.png">
+	<link rel="icon" type="image/png" href="img/logoj.png">
 	<title>JeansJeans</title>
 	<!--Logo-->
 
@@ -89,12 +89,12 @@
 	require_once "./controlador.php";
 	?>
 	<div class="row">
-		<div class="col-md-1 categorias">
+		<div class="col-md-2 categorias">
 				<h3 class="titulo-categoria">Hombre</h3>
-				<p><a href="?cat=jean" class="link-categoria">Jeans</a></p>
-				<p><a href="?cat=camisa" class="link-categoria">Camisetas</a></p>
-				<p><a href="?cat=pantalon" class="link-categoria">Pantalones</a></p>
-				<p><a href="?cat=accesorio" class="link-categoria">Accesorios</a></p>
+				<p><a href="?cat=jean" class="link-categoria"><img class="img-categoria" src="img/jeans.png">Jeans</a></p>
+				<p><a href="?cat=camisa" class="link-categoria"><img class="img-categoria" src="img/camiseta.png">Camisetas</a></p>
+				<p><a href="?cat=pantalon" class="link-categoria"><img class="img-categoria" src="img/pantalon.png">Pantalones</a></p>
+				<p><a href="?cat=accesorio" class="link-categoria"><img class="img-categoria" src="img/reloj.png">Accesorios</a></p>
 		</div>
 		<div class="col-md-10">
 			<div class="divbtnenviar">
@@ -179,32 +179,6 @@
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <!-- Right -->
-    <div>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
 
   <!-- Section: Links  -->
   <section class="">
@@ -230,19 +204,10 @@
             CATEGORÍAS
           </h6>
           <p>
-            <a href="#!" class="text-reset">Mujer</a>
+            <a href="mujer.php" class="text-reset">Mujer</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Hombre</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Nuevo</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Lo más vendido</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Rebajas</a>
+            <a  href="hombre.php" class="text-reset">Hombre</a>
           </p>
         </div>
         <!-- Grid column -->

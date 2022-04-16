@@ -18,7 +18,7 @@
 
 
 	<!--Logo-->
-	<link rel="icon" type="image/png" href="img/logojeans1.png">
+	<link rel="icon" type="image/png" href="img/logoj.png">
 	<title>JeansJeans</title>
 	<!--Logo-->
 
@@ -114,8 +114,11 @@
 	<!--Div - Ropa adicional-->
 	<div class="row ropa-inicio">
 		<div class="col-md-6 center-img center">
-			<img src="img/mujerinicio.jpg">
-			<a href="#">MUJER</a>
+			<div class="superponer">	
+				<img class="img-incio" src="img/mujerinicio.jpg">
+				<input type="file" name="imagen" <img class="img-editar" src="img/editar.png"/>
+			</div>
+				<a class="link-inicio" href="mujer.php">MUJER</a>
 		</div>
 		<div class="col-md-6 center-img">
 			<img src="img/hombreinicio.jpg">
@@ -152,19 +155,10 @@
             CATEGORÍAS
           </h6>
           <p>
-            <a href="#!" class="text-reset">Mujer</a>
+            <a href="mujer.php" class="text-reset">Mujer</a>
           </p>
           <p>
             <a  href="hombre.php" class="text-reset">Hombre</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Nuevo</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Lo más vendido</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Rebajas</a>
           </p>
         </div>
         <!-- Grid column -->

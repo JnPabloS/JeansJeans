@@ -1,28 +1,33 @@
 window.onload = function () {
 	var formRegistro = document.registro;
-	
+	var formLogin = document.login;
 	var imgContra = document.getElementById('imgContra');
-	var imgRepContra = document.getElementById('repImgContra');
-
 	var boton = document.querySelector(".btncontra");
-	var repboton = document.querySelector(".repbtncontra");
+	var imgRepContra = document.getElementById('repImgContra');
+		
+	if(formRegistro != undefined) {
 
-	var Elementos = formRegistro.elements;
-	for (var i = 0; i < Elementos.length; i++) {
-		if (Elementos[i].type == "text" || Elementos[i].type == "email" || Elementos[i].type == "number") {
-			Elementos[i].onkeypress = restringir;
+		var repboton = document.querySelector(".repbtncontra");
+		var Elementos = formRegistro.elements;
+		for (var i = 0; i < Elementos.length; i++) {
+			if (Elementos[i].type == "text" || Elementos[i].type == "email" || Elementos[i].type == "number") {
+				Elementos[i].onkeypress = restringir;
+			}
 		}
+		document.getElementById('formulario').addEventListener('submit', validarFormulario); 
+
+		boton.addEventListener("click", clickBtnContra);
+		repboton.addEventListener("click", clickBtnRepContra);
+	} else {
+		boton.addEventListener("click", clickBtnContraLogin);
 	}
 
-	
-	document.getElementById('formulario').addEventListener('submit', validarFormulario); 
 
-	boton.addEventListener("click", clickBtnContra);
-	repboton.addEventListener("click", clickBtnRepContra);
+	
+	
 
 	/*Funciones cambiar imagen de contraseña*/
 	function clickBtnContra(event) {
-		console.log(formRegistro.password.type);
 		if (formRegistro.password.type == "password") {
 			formRegistro.password.type = "text";
 			imgContra.src = "img/ver.png";
@@ -33,7 +38,6 @@ window.onload = function () {
 	}
 
 	function clickBtnRepContra(event) {
-		console.log(formRegistro.password.type);
 		if (formRegistro.reppassword.type == "password") {
 			formRegistro.reppassword.type = "text";
 			imgRepContra.src = "img/ver.png";
@@ -42,6 +46,17 @@ window.onload = function () {
 			imgRepContra.src = "img/no-ver.png";
 		}
 	}
+
+	function clickBtnContraLogin(event) {
+		if (formLogin.password.type == "password") {
+			formLogin.password.type = "text";
+			imgContra.src = "img/ver.png";
+		}else {
+			formLogin.password.type = "password";
+			imgContra.src = "img/no-ver.png";
+		}
+	}
+
 }
 
 function restringir(event) {

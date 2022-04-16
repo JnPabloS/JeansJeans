@@ -45,23 +45,10 @@
 					<div class="col-md-12 centerdiv">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">MUJER</a>
+								<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="hombre.php">HOMBRE</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-12 nav2">
-						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
-							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="#">NUEVO</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">LO MÁS VENDIDO</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">REBAJAS</a>
 							</li>
 						</ul>
 					</div>
@@ -166,46 +153,8 @@
 		</div>
 	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <!-- Right -->
-    <div>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
 
   <!-- Section: Links  -->
   <section class="">
@@ -231,19 +180,10 @@
             CATEGORÍAS
           </h6>
           <p>
-            <a href="#!" class="text-reset">Mujer</a>
+            <a href="mujer.php" class="text-reset">Mujer</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Hombre</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Nuevo</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Lo más vendido</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Rebajas</a>
+            <a  href="hombre.php" class="text-reset">Hombre</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -276,5 +216,4 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
-
 </html>

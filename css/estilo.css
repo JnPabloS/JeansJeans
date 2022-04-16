@@ -33,7 +33,7 @@ body {
 .divnav li {
 	width: 150px;
 	text-align: center;	
-	border-bottom: 3px solid transparent;
+	border-bottom: 2px solid transparent;
 } 
 
 .divdata {
@@ -50,6 +50,7 @@ body {
 	border: 3px solid black;
 }
 
+
 .ropa-inicio a {
 	display: block;
 	text-decoration: none;
@@ -64,7 +65,7 @@ body {
 
 li:hover {
 	color: black;	
-	border-bottom: 3px solid black;
+	border-bottom: 2px solid black;
 	font-weight: bold;
 }
 
@@ -75,11 +76,12 @@ li:hover {
 
 .limpiar_filtro{
 	text-decoration: none;
-	background: lightgrey;
+	background: rgb(248,249,250);
 	text-align: center;
 	color: black;
 	padding: 0.8% 1.8%;
 	margin-bottom: 20px;
+	border: 1px solid lightgray;
 }
 
 .div-limpiar {
@@ -181,6 +183,8 @@ li:hover {
 .link-categoria{
 	text-decoration: none;
 	color: black;
+	font-size: 17px;
+	padding-left: 45px;
 
 }
 
@@ -199,8 +203,7 @@ li:hover {
 
 .categorias {
 	margin-top: 20px;
-	margin-left: 50px;
-	margin-right: 40px;
+	width: 100%;
 }
 
 .banner-hombre {
@@ -250,10 +253,11 @@ li:hover {
 
 .titulo-categoria {
 	margin-top: 20px;
+	padding-left: 45px;
 }
 
 .titulo-categoria::first-letter {
-	font-size: 35px;
+	font-size: 40px;
 }
 
 .img-prenda {
@@ -296,3 +300,20 @@ li:hover {
 	color: black;
 	border: 1px solid black;
 }
+
+.img-categoria {
+	width: 15%;
+	margin-right: 8px;	
+}
+
+.img-editar {
+	 position:absolute;
+	 top:0px;
+	 left:0px;
+	 border:none;
+	 float: left;
+	 margin-top: 1080px;
+	 margin-left: 520px;
+	 width: 50px;
+}
+
