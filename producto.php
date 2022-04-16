@@ -19,7 +19,7 @@
 
 
 	<!--Logo-->
-	<link rel="icon" type="image/png" href="img/logojeans1.png">
+	<link rel="icon" type="image/png" href="img/logoj.png">
 	<title>JeansJeans</title>
 	<!--Logo-->
 
@@ -27,7 +27,7 @@
 <body>
 
 	<!--Nav-->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
 		<div class="container-fluid row divnav">
 			<div class="col-md-3">
 				<a href="index.php" class="link-logo"><img class="img-logo" src="img/logoj.png"></a>
@@ -68,6 +68,8 @@
 									</li>'
 									);
 								}								
+							} else {
+								header("Location: index.php?error=1");
 							}
 						?>
 						</ul>
@@ -106,7 +108,7 @@
 
 				<!--Carrito de compras-->
 				<div class="col-2">
-						<a href="" class="btn-carrito"><img src="img/carrito-compra.png"></a>
+						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
 						<div id="carrito-container">
 							<div id="tabla">
 							</div>

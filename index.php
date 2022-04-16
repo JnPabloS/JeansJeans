@@ -31,7 +31,7 @@
 		if(isset($_GET['error'])){
 			if($_GET['error']==1){
 				echo'<script type="text/javascript">
-    			alert("No fue posible crear la cuenta");
+    			alert("No tiene permisos para acceder a esta url");
     			window.location.href="index.php";
     			</script>';
 			}
@@ -40,18 +40,18 @@
 	?>
 
 	<!--Nav-->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-sm navbar-light bg-light">
 		<div class="container-fluid row divnav">
-			<div class="col-md-3">
+			<div class="col-sm-3">
 				<a href="index.php" class="link-logo"><img class="img-logo" src="img/logoj.png"></a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 				</button>
-				<!--<a class="navbar-brand" href="#">JeansJeans</a>-->
 			</div>
-			<div class="collapse navbar-collapse col-md-6 row" id="navbarTogglerDemo03">
+
+			<div class="collapse navbar-collapse col-sm-6 row" id="navbarTogglerDemo03">
 					<div class="col-md-12 centerdiv">
-						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
+						<ul class="navbar-nav me-auto mb-2 mb-md-0 center">
 							<li class="nav-item">
 								<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
 							</li>
@@ -62,7 +62,7 @@
 					</div>
 			</div>
 
-			<div class="col-md-3 row ">
+			<div class="col-sm-3 row ">
 
 				<div class="dropdown show col-2 divdata">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
@@ -122,13 +122,13 @@
 	
 	<!--Div - Ropa adicional-->
 	<div class="row ropa-inicio">
-		<div class="col-md-6 center-img center">
+		<div class="col-xl-6 center-img center">
 			<div class="superponer">	
 				<img class="img-incio" src="img/mujerinicio.jpg">
 			</div>
 				<a class="link-inicio" href="mujer.php">MUJER</a>
 		</div>
-		<div class="col-md-6 center-img">
+		<div class="col-xl-6 center-img">
 			<img src="img/hombreinicio.jpg">
 			<a  href="hombre.php">HOMBRE</a>
 		</div>

@@ -26,14 +26,13 @@
 <body>
 
 	<!--Nav-->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
 		<div class="container-fluid row divnav">
 			<div class="col-md-3">
 				<a href="index.php" class="link-logo"><img class="img-logo" src="img/logoj.png"></a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 				</button>
-				<!--<a class="navbar-brand" href="#">JeansJeans</a>-->
 			</div>
 			<div class="collapse navbar-collapse col-md-6 row" id="navbarTogglerDemo03">
 					<div class="col-md-12 centerdiv">
@@ -95,14 +94,14 @@
 	require_once "./controlador.php";
 	?>
 	<div class="row">
-		<div class="col-md-2 categorias">
+		<div class="col-lg-2 categorias">
 				<h3 class="titulo-categoria">Mujer</h3>
 				<p><a href="?cat=jean" class="link-categoria"><img class="img-categoria" src="img/jeans.png">Jeans</a></p>
 				<p><a href="?cat=camisa" class="link-categoria"><img class="img-categoria" src="img/camiseta.png">Camisetas</a></p>
 				<p><a href="?cat=pantalon" class="link-categoria"><img class="img-categoria" src="img/pantalon.png">Pantalones</a></p>
 				<p><a href="?cat=accesorio" class="link-categoria"><img class="img-categoria" src="img/reloj.png">Accesorios</a></p>
 		</div>
-		<div class="col-md-10">
+		<div class="col-lg-10">
 			<div class="divbtnenviar">
 				<img class="banner-hombre" src="img/banner-mujer.jpg">				
 			</div>
@@ -156,7 +155,7 @@
 				$Respuesta = $db->getProductos($consulta);
 				while ($Prenda = $Respuesta->fetch_assoc()) {
 					$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
-					print("<div class='col-md-4'><div class='div-producto-inicio'><a href='producto.php?s=F&ref=".$Prenda['id']."'>");	
+					print("<div class='col-lg-4'><div class='div-producto-inicio'><a href='producto.php?s=F&ref=".$Prenda['id']."'>");	
 						print("<img class='img-producto' src='".$Prenda['imagen']."'>");
 						print("<p>".$Prenda['nombre']."</p>");	
 

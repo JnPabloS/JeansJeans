@@ -24,6 +24,8 @@ if(isset($_GET['action'])) {
 			// code...
 			break;
 	}
+} else {
+	header("Location: index.php?error=1");
 }
 
 function mostrar($carrito)
