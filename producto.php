@@ -5,7 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--CSS y JS-->
 	<link rel="stylesheet" href="css/estilo.css?n=1">
-	<!--<script type="text/javascript" src="js/codigo.js"></script>-->
+	<script type="text/javascript" src="js/carrito.js"></script>
+
 
 	<!--Boostrap-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -40,7 +41,11 @@
 						<?php
 							if(isset($_GET['s'])){
 								if ($_GET['s']=='M') {
+
 									$next = "hombre.php";
+
+									$tabla = "ropa_hombre";
+
 									print('<li class="nav-item">
 										<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
 										</li>
@@ -50,7 +55,11 @@
 									);
 								}
 								else {
+
 									$next = "mujer.php";
+
+									$tabla = "ropa_mujer";
+
 									print('<li class="nav-item">
 									<a class="nav-link activo" aria-current="page" href="mujer.php">MUJER</a>
 									</li>
@@ -95,9 +104,15 @@
   					</div>
 				</div>
 
+				<!--Carrito de compras-->
 				<div class="col-2">
-						<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/carrito-compra.png"></a>
+						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
+						<div id="carrito-container">
+							<div id="tabla">
+							</div>
+  					</div>
 				</div>
+
 			</div>
 		</div>
 	</nav>
@@ -105,27 +120,26 @@
 	<?php
 		require_once "./controlador.php";
 		$db = db::getDBConnection();
-		if(isset($_GET['s'])){
-			if($_GET['s'] == "M"){
-				$genero_db = "ropa_hombre";
-			} else {
-				$genero_db = "ropa_mujer";
-			}
-		}
 		
 		if(isset($_GET['ref'])){
-			$consulta = "SELECT * FROM ".$genero_db." WHERE id=".$_GET['ref'];
+
+			$consulta = "SELECT * FROM ".$tabla." WHERE id=".$_GET['ref'];
 			$Respuesta = $db->getProductos($consulta);
 			$Prenda = $Respuesta->fetch_assoc();
 			$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
 			print('
 				<div class="row">
+
+          <input type="hidden" value='.$Prenda['id'].' />
+					<input type="hidden" value='.$tabla.' />
 					<div class="col-md-4">
 						<img class="img-prenda center" src="'.$Prenda['imagen'].'">
 					</div>
+          
 					<div class="col-md-4">
 						<img class="img-prenda center" src="'.$Prenda['imagen2'].'">
 					</div>
+          
 					<div class="col-md-4">
 					<div class="descripcion">
 						<p>'.$Prenda['ventas'].' vendidos</p>
@@ -148,9 +162,11 @@
 						</div>
 						<p class="especificacion">'.$Prenda['descripcion'].'</p>
 						<p>REF: '.$Prenda['id'].'</p>
+            
 						<div class="anadir-center">
-							<a class="anadir-carrito" href="">Añadir al carrito</a>
+							<a class="anadir-carrito" id="btn-add" href="">Añadir al carrito</a>
 						</div>
+
 					</div>
 				</div>
 				</div>
@@ -210,19 +226,10 @@
             CATEGORÍAS
           </h6>
           <p>
-            <a href="#!" class="text-reset">Mujer</a>
+            <a href="mujer.php" class="text-reset">Mujer</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Hombre</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Nuevo</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Lo más vendido</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Rebajas</a>
+            <a href="hombre.php" class="text-reset">Hombre</a>
           </p>
         </div>
         <!-- Grid column -->

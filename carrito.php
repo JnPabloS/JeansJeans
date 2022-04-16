@@ -15,7 +15,7 @@ class carrito{
 		$_SESSION['carrito'] = $value;
 	}
 
-	public function getCarrito($value)
+	public function getCarrito()
 	{
 		return $_SESSION['carrito'];
 	}
@@ -29,16 +29,16 @@ class carrito{
 		return $this->getCarrito();
 	}
 
-	public function add($value)
+	public function add($id)
 	{
-		if ($this->getCarrito() == NULL {
+		if ($this->getCarrito() == NULL) {
 			$items = [];
 		} else {
 			$items = json_decode($this->getCarrito(),1);
 
-			for ($i=0; $i > sizeof($items) ; $i++) { 
+			for ($i=0; $i < sizeof($items) ; $i++) { 
 				if ($items[$i]['id'] == $id) {
-					items[$i]['cantidad']++;
+					$items[$i]['cantidad']++;
 					$this->setCarrito(json_encode($items));
 
 					return $this->getCarrito();
@@ -50,7 +50,28 @@ class carrito{
 
 		array_push($items, $item);
 
-		$this->setCarrito();
+		$this->setCarrito(json_encode($items));
+
+		return $this->getCarrito();
+	}
+
+	public function remove($id)
+	{
+		$items = json_decode($this->getCarrito(), 1);
+
+		for ($i=0; $i < sizeof($items); $i++) { 
+			if ($items[$i]['id'] == $id) {
+				$items[$i]['cantidad']--;
+
+				if ($items[$i]['cantidad'] == 0) {
+					unset($items[$i]);
+					$items = array_values($items);
+				}
+
+				$this->setCarrito(json_encode($items));
+				return true;
+			}
+		}
 	}
 }
 
