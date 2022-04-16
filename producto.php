@@ -5,7 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--CSS y JS-->
 	<link rel="stylesheet" href="css/estilo.css?n=1">
-	<!--<script type="text/javascript" src="js/codigo.js"></script>-->
+	<script type="text/javascript" src="js/carrito.js"></script>
+
 
 	<!--Boostrap-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -41,6 +42,7 @@
 						<?php
 							if(isset($_GET['s'])){
 								if ($_GET['s']=='M') {
+									$tabla = "ropa_hombre";
 									print('<li class="nav-item">
 										<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
 										</li>
@@ -50,6 +52,7 @@
 									);
 								}
 								else {
+									$tabla = "ropa_mujer";
 									print('<li class="nav-item">
 									<a class="nav-link activo" aria-current="page" href="mujer.php">MUJER</a>
 									</li>
@@ -94,9 +97,15 @@
   					</div>
 				</div>
 
+				<!--Carrito de compras-->
 				<div class="col-2">
-						<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/carrito-compra.png"></a>
+						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
+						<div id="carrito-container">
+							<div id="tabla">
+							</div>
+  					</div>
 				</div>
+
 			</div>
 		</div>
 	</nav>
@@ -105,12 +114,14 @@
 		require_once "./controlador.php";
 		$db = db::getDBConnection();
 		if(isset($_GET['ref'])){
-			$consulta = "SELECT * FROM ropa_hombre WHERE id=".$_GET['ref'];
+			$consulta = "SELECT * FROM ".$tabla." WHERE id=".$_GET['ref'];
 			$Respuesta = $db->getProductos($consulta);
 			$Prenda = $Respuesta->fetch_assoc();
 			$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
 			print('
 				<div class="row">
+					<input type="hidden" value='.$Prenda['id'].' />
+					<input type="hidden" value='.$tabla.' />
 					<div class="col-md-8 center">
 						<img src="'.$Prenda['imagen'].'">
 					</div>
@@ -135,7 +146,7 @@
 						</div>
 						<p>'.$Prenda['descripcion'].'</p>
 						<p>REF: '.$Prenda['id'].'</p>
-						<a href="">Añadir al carrito</a>
+						<a id="btn-add" href="">Añadir al carrito</a>
 					</div>
 				</div>
 				');
