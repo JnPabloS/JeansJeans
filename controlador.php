@@ -47,6 +47,7 @@ class DB extends mysqli{
 		return $this->query($consulta);
 	}
 
+
 	function updatePrenda($nombre, $descripcion,$oferta,$precio,$imagen,$imagen2, $ventas, $nombre_tabla, $id){
 		if($imagen!="" && $imagen2!=""){
 			$consulta = "UPDATE $nombre_tabla SET "
@@ -110,34 +111,13 @@ class DB extends mysqli{
 		return $this->query($consulta);	
 
 	}
+
+	function addPedido($idUser,$carrito){
+		$consulta = "INSERT INTO pedidos (id,idUser, carrito) VALUES ("."NULL,"
+			."'".$idUser."', "
+			."'".$carrito."')";
+		return $this->query($consulta);
+	}
+
 }
-
-
-
-	/*function deleteCard($cardName){
-		$consulta = "DELETE FROM productos WHERE nombre='".$cardName."'";
-		print($consulta."<br>");
-		return $this->query($consulta);
-	}
-
-	function updateCard($cardName, $newCardName,$desc,$precio,$imagen = ""){
-		if($imagen!=""){
-			$consulta = "UPDATE productos SET "
-			."nombre='".$newCardName."',"
-			."descripcion='".$desc."', "
-			."precio=".$precio.", "
-			."imagen='".$imagen."' "
-			."WHERE nombre='".$cardName."'";
-		} else {
-			$consulta = "UPDATE productos SET "
-			."nombre='".$newCardName."',"
-			."descripcion='".$desc."', "
-			."precio=".$precio." "
-			."WHERE nombre='".$cardName."'";
-		}
-		print($consulta."<br>");
-		return $this->query($consulta);
-	}
-
-
-}*/?>
+?>

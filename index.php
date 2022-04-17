@@ -35,6 +35,12 @@
     			window.location.href="index.php";
     			</script>';
 			}
+			if($_GET['error']==2){
+				echo'<script type="text/javascript">
+    			alert("Ocurrió un error en la autenticación");
+    			window.location.href="index.php";
+    			</script>';
+			}
 		}
 
 	?>
@@ -66,7 +72,7 @@
 
 				<div class="dropdown show col-2 divdata">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
-  					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+  					<div class="dropdown-menu menuVariable" aria-labelledby="dropdownMenuLink">
   					<?php
   						session_start();
   						if(!isset($_SESSION['auth'])){
@@ -74,7 +80,8 @@
   								<a class="dropdown-item" href="registrarse.php?tp=1">Registrarse</a>');
   						}
   						else{
-  							print('<label class="dropdown-item">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido'].'
+
+  							print('<label class="dropdown-item">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido'].<div class="dropdown-divider"></div>'
   								</label>');
   							if ($_SESSION['tipouser'] == 1) {
   								print('<a class="dropdown-item" href="agregar.php">Agregar producto</a>');
