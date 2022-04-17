@@ -6,6 +6,7 @@
 	<!--CSS y JS-->
 	<link rel="stylesheet" href="css/estilo.css?n=1">
 	<script type="text/javascript" src="js/codigo.js?n=1"></script>
+	<script type="text/javascript" src="js/carrito.js"></script>
 
 
 	<!--Boostrap-->
@@ -63,9 +64,15 @@
   					</div>
 				</div>
 
+				<!--Carrito de compras-->
 				<div class="col-2">
-						<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/carrito-compra.png"></a>
+						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
+						<div id="carrito-container">
+							<div id="tabla">
+							</div>
+  					</div>
 				</div>
+
 			</div>
 		</div>
 	</nav>
@@ -112,7 +119,7 @@
 										<button class="repbtncontra" type="button"><img id="repImgContra" src="img/no-ver.png"></button>
 									</div>
 								</div>
-								<br><br>
+								<p>¿Ya tienes una cuenta? <a href="registrarse.php?tp=2">Inicia sesión</a></p>
 								<div class="divbtnenviar">	
 									<input type="submit" name="enviar" class="btnenviar" value="Registrarse">
 								</div>
@@ -140,6 +147,7 @@
 									</div>
 								</div>
 								<p class="alerta">'.$mensaje.'</p>
+								<p>¿No tienes una cuenta? <a href="registrarse.php?tp=1">Regístrate</a></p>
 								<div class="divbtnenviar">	
 									<input type="submit" name="enviar" class="btnenviar" value="Iniciar sesión">
 								</div>

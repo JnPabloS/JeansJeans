@@ -63,7 +63,7 @@
 			<div class="col-md-3 row ">
 				<div class="dropdown show col-2 divdata ">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
-  					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+  					<div class="dropdown-menu menuVariable" aria-labelledby="dropdownMenuLink">
   					<?php
   						session_start();
   						if(!isset($_SESSION['auth'])){
@@ -71,7 +71,7 @@
   								<a class="dropdown-item" href="registrarse.php?tp=1">Registrarse</a>');
   						}
   						else{
-  							print('<label class="dropdown-item">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido'].'</label><a class="dropdown-item" href="logout.php">Cerrar sesión</a>');
+  							print('<label class="text-center">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido'].'</label><div class="dropdown-divider"></div><a class="dropdown-item" href="logout.php">Cerrar sesión</a>');
   						}
   					?>
   					</div>
@@ -93,7 +93,7 @@
 	<?php
 	require_once "./controlador.php";
 	?>
-	<div class="row">
+	<div class="row r-ropa">
 		<div class="col-lg-2 categorias">
 				<h3 class="titulo-categoria">Mujer</h3>
 				<p><a href="?cat=jean" class="link-categoria"><img class="img-categoria" src="img/jeans.png">Jeans</a></p>
@@ -101,7 +101,7 @@
 				<p><a href="?cat=pantalon" class="link-categoria"><img class="img-categoria" src="img/pantalon.png">Pantalones</a></p>
 				<p><a href="?cat=accesorio" class="link-categoria"><img class="img-categoria" src="img/reloj.png">Accesorios</a></p>
 		</div>
-		<div class="col-lg-10">
+		<div class="col-lg-10 colum-ropa">
 			<div class="divbtnenviar">
 				<img class="banner-hombre" src="img/banner-mujer.jpg">				
 			</div>

@@ -50,6 +50,9 @@ body {
 	border: 3px solid black;
 }
 
+.menuVariable {
+	width: 100px;
+}
 
 .ropa-inicio a {
 	display: block;
@@ -360,4 +363,27 @@ footer {margin-top: 10px;
 .carrito-tittle{
 	padding-top: 20px;
 	padding-bottom: 20px;
+}
+
+@media screen and (max-width: 992px) {
+	body {
+		min-width: 300px;
+	}
+
+	.div-producto-inicio {
+		width: 300px;
+		margin: auto;
+	}
+
+	.img-categoria {
+		width: 30px;
+	}
+
+	.categorias {
+		margin: auto;
+	}
+
+	.r-ropa {
+		margin-right: 0px;
+	}
 }

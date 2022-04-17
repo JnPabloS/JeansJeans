@@ -34,7 +34,6 @@ window.onload = function() {
 			let html = '';
 
 			data.items.forEach(element => {
-				console.log(element);
 				switch (parseInt(element.oferta)) {
 					case 0:
 						p = parseFloat(element.precio)*1000;
@@ -54,6 +53,9 @@ window.onload = function() {
 
 			if (data.info.total==0 || data.info.total==null) {
 				precioTotal = "carrito vacío";
+				if (ubicacion=="comprar") {
+					location = "index.php"
+				}
 			} else if (ubicacion != "comprar") {
 				precioTotal = "<h6 class='text-center'>Total: $"+formatoMexico(data.info.total.toFixed(2))+"</h6><div class='anadir-center'><a class='anadir-carrito' id='btn-add' href='comprar.php'>Ir a pagar</a></div>";
 			} else {
@@ -67,7 +69,6 @@ window.onload = function() {
 				buttons[i].onclick = function() {
 					const id = this.parentElement.parentElement.children[0].value;
 					const tabla = this.parentElement.parentElement.children[1].value;
-					console.log(this.parentElement.parentElement);
 					removeItemFromCarrito(id, tabla);
 				}
 			}
