@@ -18,6 +18,7 @@ if (mysqli_num_rows($Respuesta)>0){
 	$_SESSION['id'] = $usuario['id'];
 	$_SESSION['user'] = $usuario['nombre'];
 	$_SESSION['apellido'] = $usuario['apellido'];
+	$_SESSION['tipouser'] = $usuario['tipouser'];
 	$_SESSION['auth'] = true;
 	header("Location: index.php");
 }else{

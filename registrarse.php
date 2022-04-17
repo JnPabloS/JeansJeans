@@ -5,8 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--CSS y JS-->
 	<link rel="stylesheet" href="css/estilo.css?n=1">
-	<script type="text/javascript" src="js/codigo.js?n=1"></script>
-	<script type="text/javascript" src="js/carrito.js"></script>
+	<script type="text/javascript" src="js/codigo.js"></script>
 
 
 	<!--Boostrap-->
@@ -82,7 +81,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="divform">
-				<h5 class="titulo-form">Ingrese sus datos</h2>	
+				<h5 class="titulo-form">Ingrese sus datos</h5>	
 				<?php
 					if (isset($_GET['tp']) && $_GET['tp']==1) {
 						print('
@@ -224,4 +223,5 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
+</body>
 </html>

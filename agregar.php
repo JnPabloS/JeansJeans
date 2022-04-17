@@ -71,12 +71,14 @@
   								<a class="dropdown-item" href="registrarse.php?tp=1">Registrarse</a>');
   						}
   						else{
-  							print('<label class="dropdown-item">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido'].'
-  								</label>');
+  							print('<label class="text-center">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido']);
   							if ($_SESSION['tipouser'] == 1) {
-  								print('<a class="dropdown-item" href="agregar.php">Agregar producto</a>');
-  							} 
-  								print('<a class="dropdown-item" href="logout.php">Cerrar sesión</a>');
+  								print('<p class="alerta">admin</p><div class="dropdown-divider"></div><a class="dropdown-item" href="agregar.php">Agregar producto</a>');
+  							} else {
+  								print('<div class="dropdown-divider"></div>');
+  							}
+  							
+  							print('</label><a class="dropdown-item" href="logout.php">Cerrar sesión</a>');
   						}
   					?>
   					</div>

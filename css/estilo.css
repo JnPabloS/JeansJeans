@@ -54,6 +54,10 @@ body {
 	width: 100px;
 }
 
+.menuVariable label {
+	width: 100%;
+}
+
 .ropa-inicio a {
 	display: block;
 	text-decoration: none;
@@ -345,7 +349,7 @@ footer {margin-top: 10px;
 
 .btn-editar {
 	border: 1px solid black;
-	padding: 2% 28%;
+	padding: 8px 135px;
 	text-decoration: none;
 	color: black;
 }
@@ -354,7 +358,7 @@ footer {margin-top: 10px;
 	background: lightgray;
 	color: black;
 	text-decoration: none;
-	padding: 2% 28%;
+	padding: 8px 135px;
 }
 
 .input-edit-vendidos {
