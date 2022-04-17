@@ -16,6 +16,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
 
 	<!--Logo-->
@@ -25,6 +26,17 @@
 
 </head>
 <body>
+	<?php
+		if(isset($_GET['error'])){
+			if($_GET['error']==1){
+				echo'<script type="text/javascript">
+    			alert("No se pudo crear el producto");
+    			window.location.href="agregar.php";
+    			</script>';
+			}
+		}
+
+	?>
 
 	<!--Nav-->
 	<nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -38,61 +50,20 @@
 			<div class="collapse navbar-collapse col-md-6 row" id="navbarTogglerDemo03">
 					<div class="col-md-12 centerdiv">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
-						<?php
-							if(isset($_GET['s'])){
-								if ($_GET['s']=='M') {
-
-									$next = "hombre.php";
-
-									$tabla = "ropa_hombre";
-
-									print('<li class="nav-item">
+							<li class="nav-item">
 										<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
 										</li>
-										<li class="nav-item">
-										<a class="nav-link activo" href="hombre.php">HOMBRE</a>
-										</li>'
-									);
-								}
-								else {
-
-									$next = "mujer.php";
-
-									$tabla = "ropa_mujer";
-
-									print('<li class="nav-item">
-									<a class="nav-link activo" aria-current="page" href="mujer.php">MUJER</a>
-									</li>
-									<li class="nav-item">
+							<li class="nav-item">
 									<a class="nav-link" href="hombre.php">HOMBRE</a>
-									</li>'
-									);
-								}								
-							} else {
-								header("Location: index.php?error=1");
-							}
-						?>
-						</ul>
-					</div>
-					<div class="col-md-12 nav2">
-						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
-							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href=<?php print($next."?cat=new") ?>>NUEVO</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href=<?php print($next."?cat=m_sell") ?>>LO MÁS VENDIDO</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href=<?php print($next."?cat=ofert") ?>>REBAJAS</a>
 							</li>
 						</ul>
 					</div>
 			</div>
+			<div class="col-sm-3 row ">
 
-			<div class="col-md-3 row ">
-				<div class="dropdown show col-2 divdata ">
+				<div class="dropdown show col-2 divdata">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
-  					<div class="dropdown-menu menuVariable" aria-labelledby="dropdownMenuLink">
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
   					<?php
   						session_start();
   						if(!isset($_SESSION['auth'])){
@@ -100,89 +71,78 @@
   								<a class="dropdown-item" href="registrarse.php?tp=1">Registrarse</a>');
   						}
   						else{
-  							print('<label class="text-center">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido'].'</label><div class="dropdown-divider"></div><a class="dropdown-item" href="logout.php">Cerrar sesión</a>');
+  							print('<label class="dropdown-item">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido'].'
+  								</label>');
+  							if ($_SESSION['tipouser'] == 1) {
+  								print('<a class="dropdown-item" href="agregar.php">Agregar producto</a>');
+  							} 
+  								print('<a class="dropdown-item" href="logout.php">Cerrar sesión</a>');
   						}
   					?>
   					</div>
 				</div>
-
-				<!--Carrito de compras-->
-				<div class="col-2">
-						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
-						<div id="carrito-container">
-							<div id="tabla">
-							</div>
-  					</div>
-				</div>
-
 			</div>
 		</div>
 	</nav>
-	<!--Nav-->
-	<?php
-		require_once "./controlador.php";
-		$db = db::getDBConnection();
-		if(isset($_GET['ref'])){
 
-			$consulta = "SELECT * FROM ".$tabla." WHERE id=".$_GET['ref'];
-			$Respuesta = $db->getProductos($consulta);
-			$Prenda = $Respuesta->fetch_assoc();
-			$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
-			print('
+	<div class="row">
+			<div class="col-md-4">
+				<p class="titulo-imagen">Imagen 1</p>
+				<img class="img-prenda center" src="img/sin_img.jpg">
+			</div>
+          
+			<div class="col-md-4">
+				<p class="titulo-imagen">Imagen 2</p>
+				<img class="img-prenda center" src="img/sin_img.jpg">
+			</div>
+          
+			<div class="col-md-4">
+				<form action="crud/createPrenda.php" enctype="multipart/form-data" method="POST">
 				<div class="row">
+					<div class="div-titulo col-md-7">
+						<input class="input-edit-titulo" type="text" name="nombre" placeholder="Nombre" required>
+					</div>
+					<div class="div-titulo col-md-4">
+							<input class="input-edit-titulo let_roja" type="number_format" name="precio" placeholder="Precio" required>
+							<br><br>
+							<label class="titulo-oferta">Oferta</label><input class="input-edit-oferta" type="number_format" name="oferta" required>
+					</div>
+				</div>
 
-          <input type="hidden" value='.$Prenda['id'].' />
-					<input type="hidden" value='.$tabla.' />
-					<div class="col-md-4">
-						<img class="img-prenda center" src="'.$Prenda['imagen'].'">
+				<div class="row">
+					<div class="col-md-6">
+						<select class="opciones" name="cat">
+							<option name="jean" value="jean">Jean</option>
+							<option name="camisa" value="camisa">Camisa</option>
+							<option name="pantalon" value="pantalon">Pantalon</option>
+							<option name="accesorio" value="accesorio">Accesorio</option>
+						</select>
 					</div>
-          
-					<div class="col-md-4">
-						<img class="img-prenda center" src="'.$Prenda['imagen2'].'">
+					<div class="col-md-6">
+						<input type="radio" name="t" value="ropa_hombre" checked>Hombre
+						<input class="radio" type="radio" name="t" value="ropa_mujer" checked>Mujer
 					</div>
-          
-					<div class="col-md-4">
-					<div class="descripcion">
-						<p>'.$Prenda['ventas'].' vendidos</p>
-						<div class="row">
-							<h2 class="col-md-8">'.$Prenda['nombre'].'</h2>
-							<div class="col-md-4">');
-			if ($Prenda['oferta']!=0) {
-				print('
-								<h4>$<strike>'.$Prenda['precio'].'</strike></h4>
-								<h2 class="let_roja">$'.$desc.'</h2>'
-					);
-				
-			} else {
-				print('
-								<h2 class="let_roja">$'.$Prenda['precio'].'</h2>
-					');
-			}
-			print('
+					
+				</div>
+
+							<textarea class="especificacion espe-editar" rows="6" cols="40" name="descripcion" placeholder="Descripción" required></textarea>
+							<br><br>
+							<div class="div-file">
+								<p class="titulo-insertar">Insertar imagen 1</p>
+								<input class="file" type="file" name="imagen1" required></input>
 							</div>
-						</div>
-						<p class="especificacion">'.$Prenda['descripcion'].'</p>
-						<p>REF: '.$Prenda['id'].'</p>
-            
-						<div class="anadir-center">
-							<a class="anadir-carrito" id="btn-add" href="">Añadir al carrito</a>');
-			if(isset($_SESSION['auth'])){
-				if ($_SESSION['tipouser'] == 1) {
-						print('<div class="div-editar">
-											<a class="btn-editar" href="editarproducto.php?t='.$tabla.'&ref='.$Prenda['id'].'">Editar</a>
-									</div>
-									<div class="div-editar">
-											<a class="btn-editar" href="crud/delete.php?t='.$tabla.'&ref='.$Prenda['id'].'">Borrar</a>
-									</div>');
-				}
-			}
-				print('	
+							<div class="div-file-2">
+								<p class="titulo-insertar">Insertar imagen 2</p>
+								<input class="file" type="file" name="imagen2" required></input>
+							</div>
+							<div class="div-actualizar">
+								<input class="actualizar" type="submit" value="Agregar">
+							</div>
+							</form>
 						</div>
 					</div>
 				</div>
-				</div>');
-			}
-	?>
+
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
 
