@@ -1,10 +1,20 @@
 window.onload = function() {
-	const carritoContainer = document.getElementById('carrito-container');
+	var carritoContainer = document.getElementById('carrito-container');
+	if(carritoContainer==null) {
+		carritoContainer = document.getElementById('carrito-div');
+	}
+
 	const bCarrito = document.getElementsByClassName('btn-carrito');
 
-	bCarrito[0].onclick = funt;
+	if (bCarrito[0] != null) {
+		ubicacion = "default";
+		bCarrito[0].onclick = verCarrito;
+	} else{
+		ubicacion = "comprar";
+		verCarrito();
+	}
 
-	function funt ()
+	function verCarrito ()
 	{
 		if (carritoContainer.style.display == 'block') {
 			carritoContainer.style.display = 'none';
@@ -39,10 +49,16 @@ window.onload = function() {
 
 				sub = formatoMexico(element.subtotal.toFixed(2));
 
-				html += "<div class='row carrito-item'><input type='hidden' value="+element.id+" /><input type='hidden' value="+element.tabla+" /><img src="+element.imagen+" class='col-md-4'><div class='col col-md-8'><h5>"+element.nombre+"</h5><p>"+element.cantidad+" items de $"+precio+"</p><p>Subtotal $"+sub+"</p><button class='btn-remove'>Quitar 1 del carrito</button></div></div>";
+				html += "<div class='row carrito-item'><input type='hidden' value="+element.id+" /><input type='hidden' value="+element.tabla+" /><img src="+element.imagen+" class='col-md-4 img-carrito'><div class='col col-md-8'><h5>"+element.nombre+"</h5><p>"+element.cantidad+" items de $"+precio+"</p><p>Subtotal $"+sub+"</p><button class='btn-remove'>Quitar 1 del carrito</button></div><div class='dropdown-divider'></div></div>";
 			});
 
-			precioTotal = "<p>Total: $"+formatoMexico(data.info.total.toFixed(2))+"</p>";
+			if (data.info.total==0 || data.info.total==null) {
+				precioTotal = "carrito vacío";
+			} else if (ubicacion != "comprar") {
+				precioTotal = "<h6 class='text-center'>Total: $"+formatoMexico(data.info.total.toFixed(2))+"</h6><div class='anadir-center'><a class='anadir-carrito' id='btn-add' href='comprar.php'>Ir a pagar</a></div>";
+			} else {
+				precioTotal = "<h2 class='text-center'>Total: $"+formatoMexico(data.info.total.toFixed(2))+"</h2><div class='anadir-center'><a class='anadir-carrito' id='btn-add' href='aggPedido.php'>Pagar</a></div><br>";
+			}
 			tablaCont.innerHTML = html + precioTotal;
 
 			buttons = document.getElementsByClassName('btn-remove');
@@ -55,9 +71,7 @@ window.onload = function() {
 					removeItemFromCarrito(id, tabla);
 				}
 			}
-			
 		});
-
 	}
 
 	const add_btn = document.getElementById('btn-add');
@@ -71,8 +85,6 @@ window.onload = function() {
 			fetch('http://localhost/Proyectofinal/carrito-fun.php?action=add&id='+ id + '&s='+tabla);
 		}
 	}
-
-
 
 	function removeItemFromCarrito(id, tabla) {
 		fetch('http://localhost/Proyectofinal/carrito-fun.php?action=remove&id=' + id + '&s=' + tabla)

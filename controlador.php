@@ -46,6 +46,13 @@ class DB extends mysqli{
 	function getProductos($consulta){
 		return $this->query($consulta);
 	}
+
+	function addPedido($idUser,$carrito){
+		$consulta = "INSERT INTO pedidos (id,idUser, carrito) VALUES ("."NULL,"
+			."'".$idUser."', "
+			."'".$carrito."')";
+		return $this->query($consulta);
+	}
 }
 
 	/*function deleteCard($cardName){

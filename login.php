@@ -8,6 +8,7 @@ if (isset($_POST['email'])) {
 
 	if (mysqli_num_rows($Respuesta)>0){
 		session_start();
+		$_SESSION['id'] = $usuario['id'];
 		$_SESSION['user'] = $usuario['nombre'];
 		$_SESSION['apellido'] = $usuario['apellido'];
 		$_SESSION['auth'] = true;
