@@ -305,16 +305,6 @@ li:hover {
 	margin-right: 8px;	
 }
 
-.img-editar {
-	 position:absolute;
-	 top:0px;
-	 left:0px;
-	 border:none;
-	 float: left;
-	 margin-top: 1080px;
-	 margin-left: 520px;
-	 width: 50px;
-}
 
 #carrito-container{
 	border: 1px solid lightgray;
@@ -333,3 +323,149 @@ li:hover {
 	padding: 5px;
 }
 
+.div-editar {
+	margin-top: 40px;
+}
+
+.btn-editar {
+	border: 1px solid black;
+	padding: 2% 28%;
+	text-decoration: none;
+	color: black;
+}
+
+.btn-editar:hover {
+	background: lightgray;
+	color: black;
+	text-decoration: none;
+	padding: 2% 28%;
+}
+
+.input-edit-vendidos {
+	border: 1px solid gray;
+	width: 10%;
+	height: 10%;
+	margin-right: 10px;
+	text-align: center;
+}
+
+.input-edit-titulo {
+	width: 100%;
+	margin-left: 10px;
+	border: 1px solid gray;
+}
+
+.div-titulo {
+	padding-top: 25px;
+}
+
+.espe-editar {
+	margin-top: 10px;
+	margin-left: 10px;
+	width: 86%;
+	border: 1px solid gray;
+	padding: 5px;
+}
+
+.ref {
+	margin-left: 10px;
+}
+
+.file {
+	margin-left: 10px;
+}
+
+.div-file {
+	position: relative;
+	width: 200px;
+	height: 40px;
+	background: black;
+	color: white;
+	margin: auto;
+	text-align: center;
+}
+
+.file {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	top: 0px ;
+	bottom: 0px;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+}
+
+.titulo-insertar {
+	text-align: centar;
+	padding-top: 7px;
+}
+
+.div-file:hover , .div-file-2:hover {
+	background: white;
+	cursor: pointer;
+	color: black;
+	border: 1px solid black;
+}
+
+.titulo-imagen {
+	text-align: center;
+	margin: 0px;
+	margin-top: 10px;
+	font-size: 18px;
+	color: gray;
+}
+
+.div-file-2 {
+	position: relative;
+	width: 200px;
+	height: 40px;
+	background: black;
+	color: white;
+	margin: auto;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.input-edit-oferta {
+	width: 30%;
+	border: 1px solid black;
+	text-align: center;
+}
+
+.titulo-oferta {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.div-actualizar {
+	text-align: center;
+}
+
+.actualizar {
+	margin-top: 90px;
+	padding: 10px 90px;
+	background: black;
+	color: white;
+}
+
+.actualizar:hover {
+	margin-top: 90px;
+	padding: 10px 90px;
+	background: white;
+	color: black;
+	border: 1px solid black;
+}
+
+.opciones {
+	border: 1px solid gray;
+	margin-left: 13px;
+	width: 70%;
+	margin-top: 17px;
+	margin-bottom: 10px;
+}
+
+.radio  {
+	margin-top: 20px;
+	margin-left: 20px;
+}

@@ -46,7 +46,73 @@ class DB extends mysqli{
 	function getProductos($consulta){
 		return $this->query($consulta);
 	}
+
+	function updatePrenda($nombre, $descripcion,$oferta,$precio,$imagen,$imagen2, $ventas, $nombre_tabla, $id){
+		if($imagen!="" && $imagen2!=""){
+			$consulta = "UPDATE $nombre_tabla SET "
+			."nombre='".$nombre."',"
+			."descripcion='".$descripcion."', "
+			."oferta=".$oferta.", "
+			."precio=".$precio.", "
+			."imagen='".$imagen."', "
+			."imagen2='".$imagen2."', "
+			."ventas='".$ventas."' "
+			."WHERE ".$nombre_tabla.".id='".$id."'";
+		} else if($imagen!=""){
+			$consulta = "UPDATE $nombre_tabla SET "
+			."nombre='".$nombre."',"
+			."descripcion='".$descripcion."', "
+			."oferta=".$oferta.", "
+			."precio=".$precio.", "
+			."imagen='".$imagen."', "
+			."ventas='".$ventas."' "
+			."WHERE ".$nombre_tabla.".id='".$id."'";
+		} else if($imagen2!=""){
+			$consulta = "UPDATE $nombre_tabla SET "
+			."nombre='".$nombre."',"
+			."descripcion='".$descripcion."', "
+			."oferta=".$oferta.", "
+			."precio=".$precio.", "
+			."imagen2='".$imagen2."', "
+			."ventas='".$ventas."' "
+			."WHERE ".$nombre_tabla.".id='".$id."'";
+		} else {
+			$consulta = "UPDATE $nombre_tabla SET "
+			."nombre='".$nombre."',"
+			."descripcion='".$descripcion."', "
+			."oferta=".$oferta.", "
+			."precio=".$precio.", "
+			."ventas='".$ventas."' "
+			."WHERE ".$nombre_tabla.".id='".$id."'";
+		}
+		print($consulta."<br>");
+		return $this->query($consulta);	
+
+	}
+	function deletePrenda($nombre_tabla, $id){ 
+		$consulta = "DELETE FROM ".$nombre_tabla." WHERE id='".$id."'";
+		print($consulta."<br>");
+		return $this->query($consulta);
+	}
+
+	function createPrenda($nombre, $descripcion,$oferta,$precio,$imagen,$imagen2, $nombre_tabla, $cat){
+		$consulta = "INSERT INTO ".$nombre_tabla." (id, nombre, descripcion, oferta, precio, imagen, imagen2, categoria, fecha, ventas) VALUES ("."NULL, "
+		."'".$nombre."', "
+		."'".$descripcion."', "
+		."'".$oferta."', "
+		."'".$precio."', "
+		."'".$imagen."', "
+		."'".$imagen2."', "
+		."'".$cat."', "
+		."NULL, "
+		."0 )";
+		print($consulta."<br>");
+		return $this->query($consulta);	
+
+	}
 }
+
+
 
 	/*function deleteCard($cardName){
 		$consulta = "DELETE FROM productos WHERE nombre='".$cardName."'";

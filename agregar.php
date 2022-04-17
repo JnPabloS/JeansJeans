@@ -14,8 +14,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
 
 	<!--Logo-->
@@ -26,13 +27,11 @@
 </head>
 <body>
 	<?php
-		require_once "./controlador.php";
-
 		if(isset($_GET['error'])){
 			if($_GET['error']==1){
 				echo'<script type="text/javascript">
-    			alert("No tiene permisos para acceder a esta url");
-    			window.location.href="index.php";
+    			alert("No se pudo crear el producto");
+    			window.location.href="agregar.php";
     			</script>';
 			}
 		}
@@ -40,28 +39,26 @@
 	?>
 
 	<!--Nav-->
-	<nav class="navbar navbar-expand-sm navbar-light bg-light">
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
 		<div class="container-fluid row divnav">
-			<div class="col-sm-3">
+			<div class="col-md-3">
 				<a href="index.php" class="link-logo"><img class="img-logo" src="img/logoj.png"></a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 				</button>
 			</div>
-
-			<div class="collapse navbar-collapse col-sm-6 row" id="navbarTogglerDemo03">
+			<div class="collapse navbar-collapse col-md-6 row" id="navbarTogglerDemo03">
 					<div class="col-md-12 centerdiv">
-						<ul class="navbar-nav me-auto mb-2 mb-md-0 center">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
-							</li>
+										<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
+										</li>
 							<li class="nav-item">
-								<a class="nav-link" href="hombre.php">HOMBRE</a>
+									<a class="nav-link" href="hombre.php">HOMBRE</a>
 							</li>
 						</ul>
 					</div>
 			</div>
-
 			<div class="col-sm-3 row ">
 
 				<div class="dropdown show col-2 divdata">
@@ -84,62 +81,67 @@
   					?>
   					</div>
 				</div>
-
-				<!--Carrito de compras-->
-				<div class="col-2">
-						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
-						<div id="carrito-container">
-							<div id="tabla">
-							</div>
-  					</div>
-				</div>
-
-
 			</div>
 		</div>
 	</nav>
-	<!--Nav-->
-	
-	<!--Carrusel-->
-	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-			</div>
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="img/banner4.png" class="d-block w-100" alt="100">
-				</div>
-				<div class="carousel-item">
-					<img src="img/banner3.png" class="d-block w-100" alt="100">
-				</div>
-			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">	
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
-	</div>
-	<!--Carrusel-->
-	
-	<!--Div - Ropa adicional-->
-	<div class="row ropa-inicio">
-		<div class="col-xl-6 center-img center">
-			<div class="superponer">	
-				<img class="img-incio" src="img/mujerinicio.jpg">
-			</div>
-				<a class="link-inicio" href="mujer.php">MUJER</a>
-		</div>
-		<div class="col-xl-6 center-img">
-			<img src="img/hombreinicio.jpg">
-			<a  href="hombre.php">HOMBRE</a>
-		</div>
-	</div>
-	<!--Div - Ropa adicional-->
 
+	<div class="row">
+			<div class="col-md-4">
+				<p class="titulo-imagen">Imagen 1</p>
+				<img class="img-prenda center" src="img/sin_img.jpg">
+			</div>
+          
+			<div class="col-md-4">
+				<p class="titulo-imagen">Imagen 2</p>
+				<img class="img-prenda center" src="img/sin_img.jpg">
+			</div>
+          
+			<div class="col-md-4">
+				<form action="crud/createPrenda.php" enctype="multipart/form-data" method="POST">
+				<div class="row">
+					<div class="div-titulo col-md-7">
+						<input class="input-edit-titulo" type="text" name="nombre" placeholder="Nombre" required>
+					</div>
+					<div class="div-titulo col-md-4">
+							<input class="input-edit-titulo let_roja" type="number_format" name="precio" placeholder="Precio" required>
+							<br><br>
+							<label class="titulo-oferta">Oferta</label><input class="input-edit-oferta" type="number_format" name="oferta" required>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<select class="opciones" name="cat">
+							<option name="jean" value="jean">Jean</option>
+							<option name="camisa" value="camisa">Camisa</option>
+							<option name="pantalon" value="pantalon">Pantalon</option>
+							<option name="accesorio" value="accesorio">Accesorio</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<input type="radio" name="t" value="ropa_hombre" checked>Hombre
+						<input class="radio" type="radio" name="t" value="ropa_mujer" checked>Mujer
+					</div>
+					
+				</div>
+
+							<textarea class="especificacion espe-editar" rows="6" cols="40" name="descripcion" placeholder="Descripción" required></textarea>
+							<br><br>
+							<div class="div-file">
+								<p class="titulo-insertar">Insertar imagen 1</p>
+								<input class="file" type="file" name="imagen1" required></input>
+							</div>
+							<div class="div-file-2">
+								<p class="titulo-insertar">Insertar imagen 2</p>
+								<input class="file" type="file" name="imagen2" required></input>
+							</div>
+							<div class="div-actualizar">
+								<input class="actualizar" type="submit" value="Agregar">
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
@@ -171,7 +173,7 @@
             <a href="mujer.php" class="text-reset">Mujer</a>
           </p>
           <p>
-            <a  href="hombre.php" class="text-reset">Hombre</a>
+            <a href="hombre.php" class="text-reset">Hombre</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -204,8 +206,5 @@
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
-
-
-</body>
 
 </html>

@@ -10,6 +10,7 @@ if (isset($_POST['email'])) {
 		session_start();
 		$_SESSION['user'] = $usuario['nombre'];
 		$_SESSION['apellido'] = $usuario['apellido'];
+		$_SESSION['tipouser'] = $usuario['tipouser'];
 		$_SESSION['auth'] = true;
 		header("Location: index.php");
 	}else{
