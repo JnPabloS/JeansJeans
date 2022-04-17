@@ -50,6 +50,9 @@ body {
 	border: 3px solid black;
 }
 
+.menuVariable {
+	width: 100px;
+}
 
 .ropa-inicio a {
 	display: block;
@@ -213,7 +216,7 @@ li:hover {
 }
 
 .img-producto {
-	width: 300px;
+	width: 100%;
 	height: 400px;
 }
 
@@ -280,11 +283,16 @@ li:hover {
 	color: gray;
 }
 
+.clear {
+	clear: both;
+}
+
 .anadir-carrito {
 	text-decoration: none;
 	background: black;
-	padding: 2% 20%;
+	padding: 10px 100px;
 	color: white;
+	margin-bottom: 5%;
 }
 
 .anadir-center {
@@ -295,7 +303,6 @@ li:hover {
 .anadir-carrito:hover {
 	text-decoration: none;
 	background: white;
-	padding: 2% 20%;
 	color: black;
 	border: 1px solid black;
 }
@@ -331,5 +338,52 @@ li:hover {
 
 .carrito-item{
 	padding: 5px;
+	text-align: center;
 }
 
+.container .img-carrito{
+	width: 200px;
+}
+
+footer {margin-top: 10px;
+	padding-top: 3px;
+}
+
+.btn-remove {
+	padding: 2px;
+	border: 1px solid black;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.container {
+	margin-top: 10px;
+}
+
+.carrito-tittle{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+@media screen and (max-width: 992px) {
+	body {
+		min-width: 300px;
+	}
+
+	.div-producto-inicio {
+		width: 300px;
+		margin: auto;
+	}
+
+	.img-categoria {
+		width: 30px;
+	}
+
+	.categorias {
+		margin: auto;
+	}
+
+	.r-ropa {
+		margin-right: 0px;
+	}
+}

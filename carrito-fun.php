@@ -19,6 +19,10 @@ if(isset($_GET['action'])) {
 		case 'remove':
 			quitar($carrito);
 			break;
+
+		case 'vaciar':
+			vaciar($carrito);
+			break;
 		
 		default:
 			// code...
@@ -82,6 +86,14 @@ function quitar($carrito)
 		$res = $carrito->remove($_GET['id'], $_GET['s']);
 		echo $res;
 	}
+}
+
+function vaciar($carrito)
+{
+	foreach(json_decode($carrito->load(), 1) as $itemCarrito){
+		$carrito->remove($itemCarrito['id'], $itemCarrito['tabla']);
+	}
+	header("Location: index.php");
 }
 
 ?>

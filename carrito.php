@@ -23,7 +23,7 @@ class carrito{
 	public function load()
 	{
 		if ($this->getCarrito()==NULL) {
-			return [];
+			return "[]";
 		}
 
 		return $this->getCarrito();
