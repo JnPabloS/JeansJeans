@@ -82,12 +82,12 @@
   						else{
   							print('<label class="text-center">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido']);
   							if ($_SESSION['tipouser'] == 1) {
-  								print('<p class="alerta">admin</p><div class="dropdown-divider"></div><a class="dropdown-item" href="agregar.php">Agregar producto</a>');
+  								print('<p class="alerta">admin</p><div class="dropdown-divider"></div><a class="dropdown-item" href="agregar.php">Agregar producto</a><a class="dropdown-item" href="ventas.php">Ventas</a>');
   							} else {
   								print('<div class="dropdown-divider"></div>');
   							}
   							
-  							print('</label><a class="dropdown-item" href="logout.php">Cerrar sesión</a>');
+  							print('<a class="dropdown-item" href="logout.php">Cerrar sesión</a></label>');
   						}
   					?>
   					</div>
@@ -134,6 +134,7 @@
 	<!--Carrusel-->
 	
 	<!--Div - Ropa adicional-->
+	<div class="centrar-div">
 	<div class="row ropa-inicio">
 		<div class="col-xl-6 center-img center">
 			<div class="superponer">	
@@ -142,9 +143,12 @@
 				<a class="link-inicio" href="mujer.php">MUJER</a>
 		</div>
 		<div class="col-xl-6 center-img">
-			<img src="img/hombreinicio.jpg">
-			<a  href="hombre.php">HOMBRE</a>
+			<div class="superponer">	
+				<img class="img-incio" src="img/hombreinicio.jpg">
+			</div>
+			<a  class="link-inicio" href="hombre.php">HOMBRE</a>
 		</div>
+	</div>
 	</div>
 	<!--Div - Ropa adicional-->
 

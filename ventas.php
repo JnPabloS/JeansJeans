@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--CSS y JS-->
 	<link rel="stylesheet" href="css/estilo.css?n=1">
-	<script type="text/javascript" src="js/carrito.js"></script>
+
 
 	<!--Boostrap-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -15,6 +15,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
 
 	<!--Logo-->
@@ -38,32 +39,19 @@
 					<div class="col-md-12 centerdiv">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
-							</li>
+										<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
+										</li>
 							<li class="nav-item">
-								<a class="nav-link activo" href="hombre.php">HOMBRE</a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-12 nav2">
-						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
-							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="?cat=new">NUEVO</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="?cat=m_sell">LO MÁS VENDIDO</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="?cat=ofert">REBAJAS</a>
+									<a class="nav-link" href="hombre.php">HOMBRE</a>
 							</li>
 						</ul>
 					</div>
 			</div>
+			<div class="col-sm-3 row ">
 
-			<div class="col-md-3 row ">
-				<div class="dropdown show col-2 divdata ">
+				<div class="dropdown show col-2 divdata">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
-  					<div class="dropdown-menu menuVariable" aria-labelledby="dropdownMenuLink">
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
   					<?php
   						session_start();
   						if(!isset($_SESSION['auth'])){
@@ -83,111 +71,104 @@
   					?>
   					</div>
 				</div>
-
-				<!--Carrito de compras-->
-				<div class="col-2">
-						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
-						<div id="carrito-container">
-							<div id="tabla">
-							</div>
-  					</div>
-				</div>
-
 			</div>
 		</div>
 	</nav>
-	<!--Nav-->
-	<?php
-	require_once "./controlador.php";
-	?>
-	<div class="row r-ropa">
-		<div class="col-lg-2 categorias">
-				<h3 class="titulo-categoria">Hombre</h3>
-				<p><a href="?cat=jean" class="link-categoria"><img class="img-categoria" src="img/jeans.png">Jeans</a></p>
-				<p><a href="?cat=camisa" class="link-categoria"><img class="img-categoria" src="img/camiseta.png">Camisetas</a></p>
-				<p><a href="?cat=pantalon" class="link-categoria"><img class="img-categoria" src="img/pantalon.png">Pantalones</a></p>
-				<p><a href="?cat=accesorio" class="link-categoria"><img class="img-categoria" src="img/reloj.png">Accesorios</a></p>
-		</div>
-		<div class="col-lg-10 colum-ropa">
-			<div class="divbtnenviar">
-				<img class="banner-hombre" src="img/banner-hombre.jpg">				
-			</div>
 
-			<?php
+	<div class="tabla-ventas">
+		<h1 class="text-center">Ventas</h1>
+		<table class="table table-bordered text-center">
+			<tr>
+				<th rowspan="2">Despachado</th>
+				<th rowspan="2">Fecha</th>
+				<th rowspan="2">Cod. venta</th>
+				<th rowspan="2">Usuario</th>
+				<th colspan="2">Productos hombre</th>
+				<th colspan="2">Productos mujer</th>
+			</tr>
+
+			<tr>
+				<th>REF</th>
+				<th>Cantidad</th>
+				<th>REF</th>
+				<th>Cantidad</th>
+			</tr>
+
+			<?php	
+				include_once 'controlador.php';
+
 				$db = db::getDBConnection();
-				if(isset($_GET['cat'])){
-					
-					print('
-						<div class="div-limpiar">
-						<a href="hombre.php" class="limpiar_filtro">
-							<img class="img-filter" src="img/filter.png">Limpiar filtro
-						</a></div>
-						<div class="row productos">');
 
-					switch ($_GET['cat']) {
-						case 'new':
-							$consulta = "SELECT * FROM ropa_hombre ORDER BY fecha DESC";
-							break;
-						
-						case 'm_sell':
-							$consulta = "SELECT * FROM ropa_hombre ORDER BY ventas DESC";
-							break;
-
-						case 'ofert':
-							$consulta = "SELECT * FROM ropa_hombre WHERE oferta!=0";
-							break;
-
-						case 'jean':
-							$consulta = "SELECT * FROM ropa_hombre WHERE categoria='jean'";
-							break;
-
-						case 'camisa':
-							$consulta = "SELECT * FROM ropa_hombre WHERE categoria='camisa'";
-							break;
-
-						case 'pantalon':
-							$consulta = "SELECT * FROM ropa_hombre WHERE categoria='pantalon'";
-							break;
-
-						case 'accesorio':
-							$consulta = "SELECT * FROM ropa_hombre WHERE categoria='accesorio'";
-							break;
-					}
-				} else {
-					$consulta = "SELECT * FROM ropa_hombre LIMIT 20";
-					print('
-						<div class="row productos">'
-					);
-				}
+				$consulta = "SELECT * FROM pedidos ORDER BY despachado ASC";
 				$Respuesta = $db->getProductos($consulta);
-				while ($Prenda = $Respuesta->fetch_assoc()) {
-					$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
-					print("<div class='col-lg-4'><div class='div-producto-inicio'><a href='producto.php?s=M&ref=".$Prenda['id']."'>");	
-						print("<img class='img-producto' src='".$Prenda['imagen']."'>");
-						print("<p>".$Prenda['nombre']."</p>");	
-
-						if ($Prenda['oferta']!=0) {
-							print('
-								<div class="row">
-									<div class="col-md-6"><p>$<strike>'.$Prenda['precio'].'</strike></p></div>
-									<div class="col-md-6"><p class="negrilla">$'.$desc.'</p></div>
-								</div>'
-							);
 				
+				while ($pedido = $Respuesta->fetch_assoc()) {
+					$carr = json_decode($pedido['carrito'], 1);
+					$comp_h = [];
+					$comp_m = [];
+					foreach ($carr as $compra) {
+						if ($compra['tabla']=="ropa_hombre") {
+							array_push($comp_h, $compra);
+
 						} else {
-							print('
-								<p class="negrilla">$'.$Prenda['precio'].'</p>
-							');
+							array_push($comp_m, $compra);							
 						}
-					print("</a></div></div>");
+					}
+					$compras = max(sizeof($comp_m), sizeof($comp_h));
+
+					echo '
+						<tr class="linea-venta">';
+
+					
+					if ($pedido['despachado'] == 1) {
+						echo '<td rowspan='.$compras.'>Si</td>';
+					} else {
+						echo '<td rowspan='.$compras.'>No - <a href=despachar.php?id='.$pedido['id'].'>Listo</a></td>';
+					}
+
+					echo '
+							<td rowspan='.$compras.'>'.substr($pedido['fecha'], 0, 10).'</td>
+							<td rowspan='.$compras.'>'.$pedido['id'].'</td>
+							<td rowspan='.$compras.'>'.$pedido['idUser'].'</td>';
+
+					for ($i=0; $i < $compras ; $i++) { 
+
+						if ($i< sizeof($comp_h)) {
+
+							echo '
+							<td>'.$comp_h[$i]['id'].'</td>
+							<td>'.$comp_h[$i]['cantidad'].'</td>';
+
+						} else {
+
+							echo '
+							<td></td>
+							<td></td>';
+
+						}
+					
+						if ($i < sizeof($comp_m)) {
+
+							echo '
+							<td>'.$comp_m[$i]['id'].'</td>
+							<td>'.$comp_m[$i]['cantidad'].'</td>';
+
+						} else {
+
+							echo '
+							<td></td>
+							<td></td>';
+
+						}
+						
+					echo '
+						</tr> ';
+					}
+
 				}
 			?>
-
-		</div>
+		</table>
 	</div>
-</div>
-	
-
 
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
@@ -219,7 +200,7 @@
             <a href="mujer.php" class="text-reset">Mujer</a>
           </p>
           <p>
-            <a  href="hombre.php" class="text-reset">Hombre</a>
+            <a href="hombre.php" class="text-reset">Hombre</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -253,4 +234,5 @@
 </footer>
 <!-- Footer -->
 
+</body>
 </html>

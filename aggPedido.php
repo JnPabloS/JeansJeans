@@ -6,6 +6,5 @@ session_start();
 $db = db::getDBConnection();
 $Respuesta = $db->addPedido($_SESSION['id'], $_SESSION['carrito']);
 $db->close();
-header("Location: carrito-fun.php?action=vaciar");
-
+header("Location: carrito-fun.php?action=vender");
 ?>

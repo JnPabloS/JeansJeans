@@ -102,12 +102,12 @@
   						else{
   							print('<label class="text-center">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido']);
   							if ($_SESSION['tipouser'] == 1) {
-  								print('<p class="alerta">admin</p><div class="dropdown-divider"></div><a class="dropdown-item" href="agregar.php">Agregar producto</a>');
+  								print('<p class="alerta">admin</p><div class="dropdown-divider"></div><a class="dropdown-item" href="agregar.php">Agregar producto</a><a class="dropdown-item" href="ventas.php">Ventas</a>');
   							} else {
   								print('<div class="dropdown-divider"></div>');
   							}
   							
-  							print('</label><a class="dropdown-item" href="logout.php">Cerrar sesión</a>');
+  							print('<a class="dropdown-item" href="logout.php">Cerrar sesión</a></label>');
   						}
   					?>
   					</div>
@@ -140,15 +140,15 @@
 
           <input type="hidden" value='.$Prenda['id'].' />
 					<input type="hidden" value='.$tabla.' />
-					<div class="col-md-4">
+					<div class="col-lg-4">
 						<img class="img-prenda center" src="'.$Prenda['imagen'].'">
 					</div>
           
-					<div class="col-md-4">
+					<div class="col-lg-4">
 						<img class="img-prenda center" src="'.$Prenda['imagen2'].'">
 					</div>
           
-					<div class="col-md-4">
+					<div class="col-lg-4">
 					<div class="descripcion">
 						<p>'.$Prenda['ventas'].' vendidos</p>
 						<div class="row">
