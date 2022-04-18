@@ -26,14 +26,13 @@
 <body>
 
 	<!--Nav-->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
 		<div class="container-fluid row divnav">
 			<div class="col-md-3">
 				<a href="index.php" class="link-logo"><img class="img-logo" src="img/logoj.png"></a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 				</button>
-				<!--<a class="navbar-brand" href="#">JeansJeans</a>-->
 			</div>
 			<div class="collapse navbar-collapse col-md-6 row" id="navbarTogglerDemo03">
 					<div class="col-md-12 centerdiv">
@@ -64,7 +63,7 @@
 			<div class="col-md-3 row ">
 				<div class="dropdown show col-2 divdata ">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
-  					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+  					<div class="dropdown-menu menuVariable" aria-labelledby="dropdownMenuLink">
   					<?php
   						session_start();
   						if(!isset($_SESSION['auth'])){
@@ -72,7 +71,14 @@
   								<a class="dropdown-item" href="registrarse.php?tp=1">Registrarse</a>');
   						}
   						else{
-  							print('<label class="dropdown-item">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido'].'</label><a class="dropdown-item" href="logout.php">Cerrar sesión</a>');
+  							print('<label class="text-center">Hola, '.$_SESSION['user'].' '.$_SESSION['apellido']);
+  							if ($_SESSION['tipouser'] == 1) {
+  								print('<p class="alerta">admin</p><div class="dropdown-divider"></div><a class="dropdown-item" href="agregar.php">Agregar producto</a>');
+  							} else {
+  								print('<div class="dropdown-divider"></div>');
+  							}
+  							
+  							print('</label><a class="dropdown-item" href="logout.php">Cerrar sesión</a>');
   						}
   					?>
   					</div>
@@ -94,15 +100,15 @@
 	<?php
 	require_once "./controlador.php";
 	?>
-	<div class="row">
-		<div class="col-md-2 categorias">
+	<div class="row r-ropa">
+		<div class="col-lg-2 categorias">
 				<h3 class="titulo-categoria">Mujer</h3>
 				<p><a href="?cat=jean" class="link-categoria"><img class="img-categoria" src="img/jeans.png">Jeans</a></p>
 				<p><a href="?cat=camisa" class="link-categoria"><img class="img-categoria" src="img/camiseta.png">Camisetas</a></p>
 				<p><a href="?cat=pantalon" class="link-categoria"><img class="img-categoria" src="img/pantalon.png">Pantalones</a></p>
 				<p><a href="?cat=accesorio" class="link-categoria"><img class="img-categoria" src="img/reloj.png">Accesorios</a></p>
 		</div>
-		<div class="col-md-10">
+		<div class="col-lg-10 colum-ropa">
 			<div class="divbtnenviar">
 				<img class="banner-hombre" src="img/banner-mujer.jpg">				
 			</div>
@@ -156,7 +162,7 @@
 				$Respuesta = $db->getProductos($consulta);
 				while ($Prenda = $Respuesta->fetch_assoc()) {
 					$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
-					print("<div class='col-md-4'><div class='div-producto-inicio'><a href='producto.php?s=F&ref=".$Prenda['id']."'>");	
+					print("<div class='col-lg-4'><div class='div-producto-inicio'><a href='producto.php?s=F&ref=".$Prenda['id']."'>");	
 						print("<img class='img-producto' src='".$Prenda['imagen']."'>");
 						print("<p>".$Prenda['nombre']."</p>");	
 

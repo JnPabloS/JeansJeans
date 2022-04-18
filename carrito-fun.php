@@ -19,11 +19,17 @@ if(isset($_GET['action'])) {
 		case 'remove':
 			quitar($carrito);
 			break;
+
+		case 'vaciar':
+			vaciar($carrito);
+			break;
 		
 		default:
 			// code...
 			break;
 	}
+} else {
+	header("Location: index.php?error=1");
 }
 
 function mostrar($carrito)
@@ -80,6 +86,14 @@ function quitar($carrito)
 		$res = $carrito->remove($_GET['id'], $_GET['s']);
 		echo $res;
 	}
+}
+
+function vaciar($carrito)
+{
+	foreach(json_decode($carrito->load(), 1) as $itemCarrito){
+		$carrito->remove($itemCarrito['id'], $itemCarrito['tabla']);
+	}
+	header("Location: index.php");
 }
 
 ?>

@@ -16,6 +16,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 
 
 	<!--Logo-->
@@ -25,6 +26,14 @@
 
 </head>
 <body>
+	<?php 
+	if (isset($_GET['error']) && $_GET['error'] == 1) {
+		echo'<script type="text/javascript">
+          alert("No fue posible actualizar el producto");
+          window.location.href="editarproducto.php?t='.$_GET['t'].'&ref='.$_GET['ref'].';
+          </script>';
+		}
+	?>
 
 	<!--Nav-->
 	<nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -39,13 +48,9 @@
 					<div class="col-md-12 centerdiv">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
 						<?php
-							if(isset($_GET['s'])){
-								if ($_GET['s']=='M') {
-
-									$next = "hombre.php";
-
+							if(isset($_GET['t'])){
+								if ($_GET['t']=='ropa_hombre') {
 									$tabla = "ropa_hombre";
-
 									print('<li class="nav-item">
 										<a class="nav-link" aria-current="page" href="mujer.php">MUJER</a>
 										</li>
@@ -55,11 +60,7 @@
 									);
 								}
 								else {
-
-									$next = "mujer.php";
-
 									$tabla = "ropa_mujer";
-
 									print('<li class="nav-item">
 									<a class="nav-link activo" aria-current="page" href="mujer.php">MUJER</a>
 									</li>
@@ -74,25 +75,12 @@
 						?>
 						</ul>
 					</div>
-					<div class="col-md-12 nav2">
-						<ul class="navbar-nav me-auto mb-2 mb-lg-0 center">
-							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href=<?php print($next."?cat=new") ?>>NUEVO</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href=<?php print($next."?cat=m_sell") ?>>LO MÁS VENDIDO</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href=<?php print($next."?cat=ofert") ?>>REBAJAS</a>
-							</li>
-						</ul>
-					</div>
 			</div>
 
 			<div class="col-md-3 row ">
 				<div class="dropdown show col-2 divdata ">
   					<a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/usuario.png"></a>
-  					<div class="dropdown-menu menuVariable" aria-labelledby="dropdownMenuLink">
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
   					<?php
   						session_start();
   						if(!isset($_SESSION['auth'])){
@@ -112,16 +100,6 @@
   					?>
   					</div>
 				</div>
-
-				<!--Carrito de compras-->
-				<div class="col-2">
-						<a href="#" class="btn-carrito"><img src="img/carrito-compra.png"></a>
-						<div id="carrito-container">
-							<div id="tabla">
-							</div>
-  					</div>
-				</div>
-
 			</div>
 		</div>
 	</nav>
@@ -130,64 +108,69 @@
 		require_once "./controlador.php";
 		$db = db::getDBConnection();
 		if(isset($_GET['ref'])){
-
 			$consulta = "SELECT * FROM ".$tabla." WHERE id=".$_GET['ref'];
 			$Respuesta = $db->getProductos($consulta);
 			$Prenda = $Respuesta->fetch_assoc();
 			$desc = number_format($Prenda['precio']*1000*((100-$Prenda['oferta'])/100),0,',','.');
 			print('
 				<div class="row">
-
           <input type="hidden" value='.$Prenda['id'].' />
 					<input type="hidden" value='.$tabla.' />
 					<div class="col-md-4">
+						<p class="titulo-imagen">Imagen 1</p>
 						<img class="img-prenda center" src="'.$Prenda['imagen'].'">
 					</div>
           
 					<div class="col-md-4">
+						<p class="titulo-imagen">Imagen 2</p>
 						<img class="img-prenda center" src="'.$Prenda['imagen2'].'">
 					</div>
           
 					<div class="col-md-4">
+					<form action="crud/update.php?id='.$Prenda['id'].'&t='.$tabla.'" enctype="multipart/form-data" method="POST">
 					<div class="descripcion">
-						<p>'.$Prenda['ventas'].' vendidos</p>
+							<input class="input-edit-vendidos" type="number_format" name="ventas" value="'.$Prenda['ventas'].'""><label>Vendidos</label>
+						</div>
 						<div class="row">
-							<h2 class="col-md-8">'.$Prenda['nombre'].'</h2>
-							<div class="col-md-4">');
+							<div class="div-titulo col-md-7">
+								<input class="input-edit-titulo h2" type="text" name="nombre" value="'.$Prenda['nombre'].'">
+							</div>
+							<div class="div-titulo col-md-4">');
 			if ($Prenda['oferta']!=0) {
 				print('
-								<h4>$<strike>'.$Prenda['precio'].'</strike></h4>
-								<h2 class="let_roja">$'.$desc.'</h2>'
+							<input class="input-edit-titulo h2 let_roja" type="number_format" name="precio" value=" '.$Prenda['precio'].'">
+							<label class="titulo-oferta">Oferta</label><input class="input-edit-oferta h4" type="number_format" name="oferta" value="'.$Prenda['oferta'].'">
+								'
+
 					);
 				
 			} else {
 				print('
-								<h2 class="let_roja">$'.$Prenda['precio'].'</h2>
+								<input class="input-edit-titulo h2 let_roja" type="number_format" name="precio" value=" '.$Prenda['precio'].'">
+								<label class="titulo-oferta">Oferta</label><input class="input-edit-oferta h4" type="number_format" name="oferta" value="'.$Prenda['oferta'].'">
+							
 					');
 			}
 			print('
 							</div>
 						</div>
-						<p class="especificacion">'.$Prenda['descripcion'].'</p>
-						<p>REF: '.$Prenda['id'].'</p>
-            
-						<div class="anadir-center">
-							<a class="anadir-carrito" id="btn-add" href="">Añadir al carrito</a>');
-			if(isset($_SESSION['auth'])){
-				if ($_SESSION['tipouser'] == 1) {
-						print('<div class="div-editar">
-											<a class="btn-editar" href="editarproducto.php?t='.$tabla.'&ref='.$Prenda['id'].'">Editar</a>
-									</div>
-									<div class="div-editar">
-											<a class="btn-editar" href="crud/delete.php?t='.$tabla.'&ref='.$Prenda['id'].'">Borrar</a>
-									</div>');
-				}
-			}
-				print('	
-						</div>
-					</div>
-				</div>
-				</div>');
+							<textarea class="especificacion espe-editar" rows="6" cols="40" name="descripcion">'.$Prenda['descripcion'].'</textarea>
+							<p class="ref">REF: '.$Prenda['id'].'</p>
+							<div class="div-file">
+								<p class="titulo-insertar">Insertar imagen 1</p>
+								<input class="file" type="file" name="imagen1"></input>
+							</div>
+							<div class="div-file-2">
+								<p class="titulo-insertar">Insertar imagen 2</p>
+								<input class="file" type="file" name="imagen2"></input>
+							</div>
+							<div class="div-actualizar">
+								<input class="actualizar" type="submit" value="Actualizar">
+							</div>
+							</form>
+								</div>
+							</div>
+						</div>');
 			}
 	?>
 <!-- Footer -->
