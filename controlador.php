@@ -113,11 +113,19 @@ class DB extends mysqli{
 	}
 
 	function addPedido($idUser,$carrito){
-		$consulta = "INSERT INTO pedidos (id,idUser, carrito) VALUES ("."NULL,"
+		$consulta = "INSERT INTO pedidos (id,idUser, carrito, fecha, despachado) VALUES ("."NULL,"
 			."'".$idUser."', "
-			."'".$carrito."')";
+			."'".$carrito."', "
+			."NULL, "
+			." 0)";
 		return $this->query($consulta);
 	}
 
+	function despPedido($id){
+		$consulta = "UPDATE pedidos SET "
+		."despachado='1' "
+		."WHERE pedidos.id='".$id."'";
+		return $this->query($consulta);
+	}
 }
 ?>

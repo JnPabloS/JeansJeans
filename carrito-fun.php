@@ -23,6 +23,10 @@ if(isset($_GET['action'])) {
 		case 'vaciar':
 			vaciar($carrito);
 			break;
+
+		case 'vender':
+			vender($carrito);
+			break;
 		
 		default:
 			// code...
@@ -86,6 +90,29 @@ function quitar($carrito)
 		$res = $carrito->remove($_GET['id'], $_GET['s']);
 		echo $res;
 	}
+}
+
+function vender($carrito)
+{
+	$itemsCarrito = json_decode($carrito->load(), 1);
+	$db = db::getDBConnection();
+
+	foreach ($itemsCarrito as $itemCarrito) {
+		$ventas = 0;
+		$consulta = "SELECT * FROM ".$itemCarrito['tabla']." WHERE id='".$itemCarrito['id']."'";
+		$Respuesta = $db->getProductos($consulta);
+		$Prenda = $Respuesta->fetch_assoc();
+		$ventas = $Prenda['ventas'];
+		$ventas += $itemCarrito['cantidad'];
+		$consulta = "UPDATE ".$itemCarrito['tabla']." SET "
+			."ventas='".$ventas."' "
+			."WHERE ".$itemCarrito['tabla'].".id='".$itemCarrito['id']."'";
+
+
+		$Respuesta = $db->getProductos($consulta);
+	}
+	
+	header("Location: carrito-fun.php?action=vaciar");
 }
 
 function vaciar($carrito)

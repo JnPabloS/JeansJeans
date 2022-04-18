@@ -37,12 +37,12 @@ window.onload = function() {
 				switch (parseInt(element.oferta)) {
 					case 0:
 						p = parseFloat(element.precio)*1000;
-						precio = formatoMexico(p);
+						precio = formatoMexico(p.toFixed(2));
 						break;
 					
 					default:
 						p = parseFloat(element.precio)*1000*((100-parseFloat(element.oferta))/100);
-						precio = formatoMexico(p);
+						precio = formatoMexico(p.toFixed(2));
 						break;
 				}
 
